@@ -1,0 +1,10 @@
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\bin\Debug\DSA Project.exe.config
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\bin\Debug\DSA Project.exe
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\bin\Debug\DSA Project.pdb
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA Project.csproj.AssemblyReference.cache
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA_Project.Form1.resources
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA_Project.Properties.Resources.resources
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA Project.csproj.GenerateResource.cache
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA Project.csproj.CoreCompileInputs.cache
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA Project.exe
+D:\Indus\Semester_3\DSA\LAB\DSA Project\DSA Project\obj\Debug\DSA Project.pdb
