@@ -1,2 +1,2 @@
-# sajjadali1714-Graph-Triversal-Google-Map
-Graph Triversal Google Map Using DFS &amp; BFS
+# Graph-Traversal-Google-Map
+Graph Traversal Google Map Using DFS &amp; BFS
