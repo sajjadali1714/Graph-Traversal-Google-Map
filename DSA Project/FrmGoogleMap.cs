@@ -35,6 +35,7 @@ namespace DSA_Project
             try
             {
                 _points.Add(new PointLatLng(Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text)));
+                txtOutput.Text = "Route Addedd : latitude " + txtLat.Text + " longitude " + txtLng.Text + Environment.NewLine +txtOutput.Text;
 
             }
             catch (Exception ex)
@@ -49,8 +50,9 @@ namespace DSA_Project
             try
             {
                 map.GetRoute(GoogleMap, _points[0], _points[1], 13);
-                _points.Clear();
                 map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
+                txtOutput.Text = "Route between : " + _points[0] + " and " + _points[1] + Environment.NewLine + txtOutput.Text;
+                _points.Clear();
             }
             catch (Exception ex)
             {
@@ -71,6 +73,17 @@ namespace DSA_Project
 
         }
 
-        
+        private void BtnAddPolygon_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                map.GetPolygon(GoogleMap,_points, "My Area");
+                map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
+
+            } catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

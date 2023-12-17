@@ -52,10 +52,13 @@
             this.txtLat = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            this.txtOutput = new System.Windows.Forms.RichTextBox();
+            this.BtnAddPolygon = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -227,12 +230,12 @@
             this.GoogleMap.Size = new System.Drawing.Size(833, 187);
             this.GoogleMap.TabIndex = 1;
             this.GoogleMap.Zoom = 0D;
-            this.GoogleMap.DoubleClick += new System.EventHandler(this.GoogleMap_DoubleClick);
             // 
             // panel1
             // 
             this.panel1.Controls.Add(this.btnAddRoute);
             this.panel1.Controls.Add(this.btnGetRoute);
+            this.panel1.Controls.Add(this.BtnAddPolygon);
             this.panel1.Controls.Add(this.btnLoadMap);
             this.panel1.Controls.Add(this.txtLng);
             this.panel1.Controls.Add(this.txtLat);
@@ -264,7 +267,7 @@
             // 
             // btnLoadMap
             // 
-            this.btnLoadMap.Location = new System.Drawing.Point(309, 43);
+            this.btnLoadMap.Location = new System.Drawing.Point(309, 20);
             this.btnLoadMap.Name = "btnLoadMap";
             this.btnLoadMap.Size = new System.Drawing.Size(106, 35);
             this.btnLoadMap.TabIndex = 1;
@@ -290,6 +293,7 @@
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.txtOutput);
             this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabPage2.Location = new System.Drawing.Point(4, 4);
             this.tabPage2.Name = "tabPage2";
@@ -303,6 +307,25 @@
             // 
             this.sqLiteCommand1.CommandText = null;
             // 
+            // txtOutput
+            // 
+            this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.txtOutput.Location = new System.Drawing.Point(3, 3);
+            this.txtOutput.Name = "txtOutput";
+            this.txtOutput.Size = new System.Drawing.Size(833, 292);
+            this.txtOutput.TabIndex = 0;
+            this.txtOutput.Text = "";
+            // 
+            // BtnAddPolygon
+            // 
+            this.BtnAddPolygon.Location = new System.Drawing.Point(309, 61);
+            this.BtnAddPolygon.Name = "BtnAddPolygon";
+            this.BtnAddPolygon.Size = new System.Drawing.Size(106, 35);
+            this.BtnAddPolygon.TabIndex = 1;
+            this.BtnAddPolygon.Text = "Add Polygon";
+            this.BtnAddPolygon.UseVisualStyleBackColor = true;
+            this.BtnAddPolygon.Click += new System.EventHandler(this.BtnAddPolygon_Click);
+            // 
             // FrmGoogleMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,12 +336,14 @@
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmGoogleMap";
             this.Text = "FrmGoogleMap";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -349,5 +374,7 @@
         private System.Windows.Forms.ToolStripButton btnZoomIn;
         private System.Windows.Forms.ToolStripButton BtnZoomOut;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
+        private System.Windows.Forms.RichTextBox txtOutput;
+        private System.Windows.Forms.Button BtnAddPolygon;
     }
 }

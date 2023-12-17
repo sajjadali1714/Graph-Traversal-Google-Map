@@ -5,6 +5,7 @@ using GMap.NET.WindowsForms.Markers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -68,6 +69,7 @@ namespace DSA_Project.Classes
                 Map.Zoom = zoom;
 
                 // Create a route
+                
                 GMapRoute r = new GMapRoute(new List<PointLatLng> { start, end }, "My Route")
                 {
                     Stroke = new Pen(Color.Red, 5)
@@ -77,12 +79,35 @@ namespace DSA_Project.Classes
                 routes.Routes.Add(r);
 
                 Map.Overlays.Add(routes);
+                
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
+
+
+        public void GetPolygon(GMapControl Map, List<PointLatLng> points, String name)
+        {
+            try
+            {
+                var polygon = new GMapPolygon(points, name)
+                {
+                    Stroke = new Pen(Color.DarkGreen, 2),
+                    Fill = new  SolidBrush(Color.LightGreen),
+                    //Fill = new HatchBrush(HatchStyle.Percent10,Color.LightGreen) 
+                };
+                var polygons = new GMapOverlay("polygon");
+                polygons.Polygons.Add(polygon);
+                Map.Overlays.Add(polygons);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
 
 
 
