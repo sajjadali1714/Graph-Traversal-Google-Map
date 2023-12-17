@@ -26,8 +26,8 @@ namespace DSA_Project
         }
 
         private void btnLoadMap_Click(object sender, EventArgs e)
-        {            
-            map.loadMap(Map, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text));
+        {
+            map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), true);
         }
 
         private void btnAddRoute_Click(object sender, EventArgs e)
@@ -36,18 +36,6 @@ namespace DSA_Project
             {
                 _points.Add(new PointLatLng(Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text)));
 
-            } catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-               
-        }
-
-        private void btnGetRoute_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                map.getRoute(Map, _points[0], _points[1], 14);
             }
             catch (Exception ex)
             {
@@ -55,5 +43,34 @@ namespace DSA_Project
             }
 
         }
+
+        private void btnGetRoute_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                map.GetRoute(GoogleMap, _points[0], _points[1], 13);
+                _points.Clear();
+                map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        private void btnNew_Click(object sender, EventArgs e)
+        {
+            GoogleMap.Overlays.Clear();
+            _points.Clear();
+        }
+
+        private void btnZoomIn_Click(object sender, EventArgs e)
+        {
+            
+
+        }
+
+        
     }
 }

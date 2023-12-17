@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -19,7 +20,7 @@ namespace DSA_Project.Classes
 
         }
 
-        public void loadMap(GMapControl Map, double latitude, double longitude)
+        public void loadMap(GMapControl Map, double latitude, double longitude, bool addMarker)
         {
             try
             {
@@ -29,63 +30,62 @@ namespace DSA_Project.Classes
                 Map.Position = new GMap.NET.PointLatLng(latitude, longitude);
                 Map.MinZoom = 1;
                 Map.MaxZoom = 22;
-                Map.Zoom = 18;
+                Map.Zoom = 13;
 
-
-                PointLatLng point = new GMap.NET.PointLatLng(latitude, longitude);
-                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
-
-                // Create Overlay
-                GMapOverlay markers = new GMapOverlay("markers");
-
-                // Add all markers to that overlay
-                markers.Markers.Add(marker);
-
-                // Cover map with overlay
-                Map.Overlays.Add(markers);
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message);
-            }
-        }
-
-        public void getRoute(GMapControl Map, PointLatLng start, PointLatLng end, int zoom)
-        {
-            try
-            {
-                Map.MapProvider = GMapProviders.GoogleMap;
-                GDirections gd = null;
-                DirectionsStatusCode Res = Map.DirectionsProvider.GetDirections(out gd, Map.Position, new PointLatLng(54.7261334816182, 25.2985095977783), false, false, false, false, true);
-
-                if (Res == DirectionsStatusCode.OK)
+                if (addMarker == true)
                 {
-                    var route = GoogleMapProvider.Instance.GetRoute(start, end, false, false, zoom);
 
-                    if (route != null && route.Status == RouteStatusCode.OK)
-                    {
-                        var r = new GMapRoute(route.Points, "My Route")
-                        {
-                            Stroke = new Pen(Color.Red, 5)
-                        };
 
-                        GMapOverlay routes = new GMapOverlay("routes");
-                        routes.Routes.Add(r);
-                        Map.Overlays.Add(routes);
-                    }
-                    else
-                    {
-                        MessageBox.Show("Failed to get route. Status: " + route?.Status);
-                    }
+                    PointLatLng point = new GMap.NET.PointLatLng(latitude, longitude);
+                    GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
+
+                    // Create Overlay
+                    GMapOverlay markers = new GMapOverlay("markers");
+
+                    // Add all markers to that overlay
+                    markers.Markers.Add(marker);
+
+                    // Cover map with overlay
+                    Map.Overlays.Add(markers);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
+
+        public void GetRoute(GMapControl Map, PointLatLng start, PointLatLng end, int zoom)
+        {
+            try
+            {
+                Map.MapProvider = GMapProviders.GoogleMap;
+
+                Map.Position = start; // Set the map position to the starting point
+
+                Map.MinZoom = 3;
+                Map.MaxZoom = 18;
+                Map.Zoom = zoom;
+
+                // Create a route
+                GMapRoute r = new GMapRoute(new List<PointLatLng> { start, end }, "My Route")
+                {
+                    Stroke = new Pen(Color.Red, 5)
+                };
+
+                GMapOverlay routes = new GMapOverlay("routes");
+                routes.Routes.Add(r);
+
+                Map.Overlays.Add(routes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+
+
 
     }
 }

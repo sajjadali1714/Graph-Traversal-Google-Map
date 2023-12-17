@@ -31,6 +31,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmGoogleMap));
             this.ToolStrip1 = new System.Windows.Forms.ToolStrip();
             this.btnNew = new System.Windows.Forms.ToolStripButton();
+            this.btnZoomIn = new System.Windows.Forms.ToolStripButton();
+            this.BtnZoomOut = new System.Windows.Forms.ToolStripButton();
             this.btnEdit = new System.Windows.Forms.ToolStripButton();
             this.btnSave = new System.Windows.Forms.ToolStripButton();
             this.BtnRefresh = new System.Windows.Forms.ToolStripButton();
@@ -39,24 +41,29 @@
             this.btnPrint = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.HelpToolStripButton = new System.Windows.Forms.ToolStripButton();
-            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
-            this.Map = new GMap.NET.WindowsForms.GMapControl();
-            this.txtLat = new System.Windows.Forms.TextBox();
-            this.txtLng = new System.Windows.Forms.TextBox();
-            this.btnLoadMap = new System.Windows.Forms.Button();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.GoogleMap = new GMap.NET.WindowsForms.GMapControl();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnAddRoute = new System.Windows.Forms.Button();
             this.btnGetRoute = new System.Windows.Forms.Button();
+            this.btnLoadMap = new System.Windows.Forms.Button();
+            this.txtLng = new System.Windows.Forms.TextBox();
+            this.txtLat = new System.Windows.Forms.TextBox();
+            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
             this.ToolStrip1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
-            this.splitContainer1.Panel1.SuspendLayout();
-            this.splitContainer1.Panel2.SuspendLayout();
-            this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // ToolStrip1
             // 
             this.ToolStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.btnNew,
+            this.btnZoomIn,
+            this.BtnZoomOut,
             this.btnEdit,
             this.btnSave,
             this.BtnRefresh,
@@ -67,7 +74,7 @@
             this.HelpToolStripButton});
             this.ToolStrip1.Location = new System.Drawing.Point(0, 0);
             this.ToolStrip1.Name = "ToolStrip1";
-            this.ToolStrip1.Size = new System.Drawing.Size(843, 25);
+            this.ToolStrip1.Size = new System.Drawing.Size(847, 25);
             this.ToolStrip1.TabIndex = 34;
             this.ToolStrip1.Text = "ToolStrip1";
             // 
@@ -79,6 +86,24 @@
             this.btnNew.Size = new System.Drawing.Size(51, 22);
             this.btnNew.Text = "&New";
             this.btnNew.ToolTipText = "Clear All Controls";
+            this.btnNew.Click += new System.EventHandler(this.btnNew_Click);
+            // 
+            // btnZoomIn
+            // 
+            this.btnZoomIn.Image = ((System.Drawing.Image)(resources.GetObject("btnZoomIn.Image")));
+            this.btnZoomIn.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnZoomIn.Name = "btnZoomIn";
+            this.btnZoomIn.Size = new System.Drawing.Size(72, 22);
+            this.btnZoomIn.Text = "Zoom In";
+            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
+            // 
+            // BtnZoomOut
+            // 
+            this.BtnZoomOut.Image = ((System.Drawing.Image)(resources.GetObject("BtnZoomOut.Image")));
+            this.BtnZoomOut.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.BtnZoomOut.Name = "BtnZoomOut";
+            this.BtnZoomOut.Size = new System.Drawing.Size(82, 22);
+            this.BtnZoomOut.Text = "Zoom Out";
             // 
             // btnEdit
             // 
@@ -98,6 +123,7 @@
             this.btnSave.Size = new System.Drawing.Size(51, 22);
             this.btnSave.Text = "&Save";
             this.btnSave.ToolTipText = "Save Or Update Record";
+            this.btnSave.Visible = false;
             // 
             // BtnRefresh
             // 
@@ -105,6 +131,7 @@
             this.BtnRefresh.Name = "BtnRefresh";
             this.BtnRefresh.Size = new System.Drawing.Size(50, 22);
             this.BtnRefresh.Text = "&Refresh";
+            this.BtnRefresh.Visible = false;
             // 
             // btnDelete
             // 
@@ -123,6 +150,7 @@
             this.btnverify.Name = "btnverify";
             this.btnverify.Size = new System.Drawing.Size(56, 22);
             this.btnverify.Text = "&Verify";
+            this.btnverify.Visible = false;
             // 
             // btnPrint
             // 
@@ -148,85 +176,77 @@
             this.HelpToolStripButton.Size = new System.Drawing.Size(23, 22);
             this.HelpToolStripButton.Text = "He&lp";
             // 
-            // splitContainer1
+            // tabControl1
             // 
-            this.splitContainer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.splitContainer1.Location = new System.Drawing.Point(0, 25);
-            this.splitContainer1.Name = "splitContainer1";
+            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 25);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(847, 324);
+            this.tabControl1.TabIndex = 35;
             // 
-            // splitContainer1.Panel1
+            // tabPage1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.Map);
+            this.tabPage1.Controls.Add(this.GoogleMap);
+            this.tabPage1.Controls.Add(this.panel1);
+            this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage1.Location = new System.Drawing.Point(4, 4);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(839, 298);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "Map";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
-            // splitContainer1.Panel2
+            // GoogleMap
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.btnGetRoute);
-            this.splitContainer1.Panel2.Controls.Add(this.btnAddRoute);
-            this.splitContainer1.Panel2.Controls.Add(this.btnLoadMap);
-            this.splitContainer1.Panel2.Controls.Add(this.txtLng);
-            this.splitContainer1.Panel2.Controls.Add(this.txtLat);
-            this.splitContainer1.Size = new System.Drawing.Size(843, 430);
-            this.splitContainer1.SplitterDistance = 545;
-            this.splitContainer1.TabIndex = 35;
+            this.GoogleMap.Bearing = 0F;
+            this.GoogleMap.CanDragMap = true;
+            this.GoogleMap.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.GoogleMap.EmptyTileColor = System.Drawing.Color.Navy;
+            this.GoogleMap.GrayScaleMode = false;
+            this.GoogleMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
+            this.GoogleMap.LevelsKeepInMemory = 5;
+            this.GoogleMap.Location = new System.Drawing.Point(3, 108);
+            this.GoogleMap.MarkersEnabled = true;
+            this.GoogleMap.MaxZoom = 2;
+            this.GoogleMap.MinZoom = 2;
+            this.GoogleMap.MouseWheelZoomEnabled = true;
+            this.GoogleMap.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
+            this.GoogleMap.Name = "GoogleMap";
+            this.GoogleMap.NegativeMode = false;
+            this.GoogleMap.PolygonsEnabled = true;
+            this.GoogleMap.RetryLoadTile = 0;
+            this.GoogleMap.RoutesEnabled = true;
+            this.GoogleMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
+            this.GoogleMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
+            this.GoogleMap.ShowTileGridLines = false;
+            this.GoogleMap.Size = new System.Drawing.Size(833, 187);
+            this.GoogleMap.TabIndex = 1;
+            this.GoogleMap.Zoom = 0D;
+            this.GoogleMap.DoubleClick += new System.EventHandler(this.GoogleMap_DoubleClick);
             // 
-            // Map
+            // panel1
             // 
-            this.Map.Bearing = 0F;
-            this.Map.CanDragMap = true;
-            this.Map.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Map.EmptyTileColor = System.Drawing.Color.Navy;
-            this.Map.GrayScaleMode = false;
-            this.Map.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
-            this.Map.LevelsKeepInMemory = 5;
-            this.Map.Location = new System.Drawing.Point(0, 0);
-            this.Map.MarkersEnabled = true;
-            this.Map.MaxZoom = 2;
-            this.Map.MinZoom = 2;
-            this.Map.MouseWheelZoomEnabled = true;
-            this.Map.MouseWheelZoomType = GMap.NET.MouseWheelZoomType.MousePositionAndCenter;
-            this.Map.Name = "Map";
-            this.Map.NegativeMode = false;
-            this.Map.PolygonsEnabled = true;
-            this.Map.RetryLoadTile = 0;
-            this.Map.RoutesEnabled = true;
-            this.Map.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
-            this.Map.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
-            this.Map.ShowTileGridLines = false;
-            this.Map.Size = new System.Drawing.Size(545, 430);
-            this.Map.TabIndex = 0;
-            this.Map.Zoom = 0D;
-            // 
-            // txtLat
-            // 
-            this.txtLat.Location = new System.Drawing.Point(73, 68);
-            this.txtLat.Name = "txtLat";
-            this.txtLat.Size = new System.Drawing.Size(100, 20);
-            this.txtLat.TabIndex = 0;
-            this.txtLat.Text = "24.8978";
-            // 
-            // txtLng
-            // 
-            this.txtLng.Location = new System.Drawing.Point(73, 94);
-            this.txtLng.Name = "txtLng";
-            this.txtLng.Size = new System.Drawing.Size(100, 20);
-            this.txtLng.TabIndex = 0;
-            this.txtLng.Text = "67.0799";
-            // 
-            // btnLoadMap
-            // 
-            this.btnLoadMap.Location = new System.Drawing.Point(73, 121);
-            this.btnLoadMap.Name = "btnLoadMap";
-            this.btnLoadMap.Size = new System.Drawing.Size(75, 23);
-            this.btnLoadMap.TabIndex = 1;
-            this.btnLoadMap.Text = "Load Map";
-            this.btnLoadMap.UseVisualStyleBackColor = true;
-            this.btnLoadMap.Click += new System.EventHandler(this.btnLoadMap_Click);
+            this.panel1.Controls.Add(this.btnAddRoute);
+            this.panel1.Controls.Add(this.btnGetRoute);
+            this.panel1.Controls.Add(this.btnLoadMap);
+            this.panel1.Controls.Add(this.txtLng);
+            this.panel1.Controls.Add(this.txtLat);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Location = new System.Drawing.Point(3, 3);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(833, 105);
+            this.panel1.TabIndex = 0;
             // 
             // btnAddRoute
             // 
-            this.btnAddRoute.Location = new System.Drawing.Point(179, 94);
+            this.btnAddRoute.Location = new System.Drawing.Point(202, 12);
             this.btnAddRoute.Name = "btnAddRoute";
-            this.btnAddRoute.Size = new System.Drawing.Size(75, 23);
+            this.btnAddRoute.Size = new System.Drawing.Size(101, 43);
             this.btnAddRoute.TabIndex = 1;
             this.btnAddRoute.Text = "Add Route";
             this.btnAddRoute.UseVisualStyleBackColor = true;
@@ -234,31 +254,71 @@
             // 
             // btnGetRoute
             // 
-            this.btnGetRoute.Location = new System.Drawing.Point(179, 123);
+            this.btnGetRoute.Location = new System.Drawing.Point(202, 61);
             this.btnGetRoute.Name = "btnGetRoute";
-            this.btnGetRoute.Size = new System.Drawing.Size(75, 23);
+            this.btnGetRoute.Size = new System.Drawing.Size(101, 35);
             this.btnGetRoute.TabIndex = 1;
             this.btnGetRoute.Text = "Get Route";
             this.btnGetRoute.UseVisualStyleBackColor = true;
             this.btnGetRoute.Click += new System.EventHandler(this.btnGetRoute_Click);
+            // 
+            // btnLoadMap
+            // 
+            this.btnLoadMap.Location = new System.Drawing.Point(309, 43);
+            this.btnLoadMap.Name = "btnLoadMap";
+            this.btnLoadMap.Size = new System.Drawing.Size(106, 35);
+            this.btnLoadMap.TabIndex = 1;
+            this.btnLoadMap.Text = "Load Map";
+            this.btnLoadMap.UseVisualStyleBackColor = true;
+            this.btnLoadMap.Click += new System.EventHandler(this.btnLoadMap_Click);
+            // 
+            // txtLng
+            // 
+            this.txtLng.Location = new System.Drawing.Point(71, 52);
+            this.txtLng.Name = "txtLng";
+            this.txtLng.Size = new System.Drawing.Size(125, 26);
+            this.txtLng.TabIndex = 0;
+            this.txtLng.Text = "67.0799";
+            // 
+            // txtLat
+            // 
+            this.txtLat.Location = new System.Drawing.Point(71, 20);
+            this.txtLat.Name = "txtLat";
+            this.txtLat.Size = new System.Drawing.Size(125, 26);
+            this.txtLat.TabIndex = 0;
+            this.txtLat.Text = "24.8978";
+            // 
+            // tabPage2
+            // 
+            this.tabPage2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tabPage2.Location = new System.Drawing.Point(4, 4);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(839, 298);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "Output";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
+            // sqLiteCommand1
+            // 
+            this.sqLiteCommand1.CommandText = null;
             // 
             // FrmGoogleMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.ClientSize = new System.Drawing.Size(843, 455);
-            this.Controls.Add(this.splitContainer1);
+            this.ClientSize = new System.Drawing.Size(847, 349);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.ToolStrip1);
             this.Name = "FrmGoogleMap";
             this.Text = "FrmGoogleMap";
             this.ToolStrip1.ResumeLayout(false);
             this.ToolStrip1.PerformLayout();
-            this.splitContainer1.Panel1.ResumeLayout(false);
-            this.splitContainer1.Panel2.ResumeLayout(false);
-            this.splitContainer1.Panel2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
-            this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,12 +336,18 @@
         internal System.Windows.Forms.ToolStripButton btnPrint;
         internal System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         internal System.Windows.Forms.ToolStripButton HelpToolStripButton;
-        private System.Windows.Forms.SplitContainer splitContainer1;
-        private GMap.NET.WindowsForms.GMapControl Map;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private System.Windows.Forms.TabPage tabPage2;
+        private GMap.NET.WindowsForms.GMapControl GoogleMap;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.TextBox txtLng;
         private System.Windows.Forms.TextBox txtLat;
         private System.Windows.Forms.Button btnLoadMap;
-        private System.Windows.Forms.TextBox txtLng;
         private System.Windows.Forms.Button btnAddRoute;
         private System.Windows.Forms.Button btnGetRoute;
+        private System.Windows.Forms.ToolStripButton btnZoomIn;
+        private System.Windows.Forms.ToolStripButton BtnZoomOut;
+        private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
     }
 }
