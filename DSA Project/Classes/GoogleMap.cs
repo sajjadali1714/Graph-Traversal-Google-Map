@@ -95,8 +95,6 @@ namespace DSA_Project.Classes
                 var polygon = new GMapPolygon(points, name)
                 {
                     Stroke = new Pen(Color.DarkGreen, 2),
-                    Fill = new  SolidBrush(Color.LightGreen),
-                    //Fill = new HatchBrush(HatchStyle.Percent10,Color.LightGreen) 
                 };
                 var polygons = new GMapOverlay("polygon");
                 polygons.Polygons.Add(polygon);

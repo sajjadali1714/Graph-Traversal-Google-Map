@@ -45,15 +45,15 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GoogleMap = new GMap.NET.WindowsForms.GMapControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnAddRoute = new System.Windows.Forms.Button();
-            this.btnGetRoute = new System.Windows.Forms.Button();
+            this.CmbOptions = new System.Windows.Forms.ComboBox();
+            this.btnAddPoint = new System.Windows.Forms.Button();
+            this.btnGet = new System.Windows.Forms.Button();
             this.btnLoadMap = new System.Windows.Forms.Button();
             this.txtLng = new System.Windows.Forms.TextBox();
             this.txtLat = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
             this.txtOutput = new System.Windows.Forms.RichTextBox();
-            this.BtnAddPolygon = new System.Windows.Forms.Button();
+            this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
             this.ToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -98,7 +98,6 @@
             this.btnZoomIn.Name = "btnZoomIn";
             this.btnZoomIn.Size = new System.Drawing.Size(72, 22);
             this.btnZoomIn.Text = "Zoom In";
-            this.btnZoomIn.Click += new System.EventHandler(this.btnZoomIn_Click);
             // 
             // BtnZoomOut
             // 
@@ -213,7 +212,7 @@
             this.GoogleMap.GrayScaleMode = false;
             this.GoogleMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.GoogleMap.LevelsKeepInMemory = 5;
-            this.GoogleMap.Location = new System.Drawing.Point(3, 108);
+            this.GoogleMap.Location = new System.Drawing.Point(3, 102);
             this.GoogleMap.MarkersEnabled = true;
             this.GoogleMap.MaxZoom = 2;
             this.GoogleMap.MinZoom = 2;
@@ -227,49 +226,66 @@
             this.GoogleMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GoogleMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GoogleMap.ShowTileGridLines = false;
-            this.GoogleMap.Size = new System.Drawing.Size(833, 187);
+            this.GoogleMap.Size = new System.Drawing.Size(833, 193);
             this.GoogleMap.TabIndex = 1;
             this.GoogleMap.Zoom = 0D;
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnAddRoute);
-            this.panel1.Controls.Add(this.btnGetRoute);
-            this.panel1.Controls.Add(this.BtnAddPolygon);
+            this.panel1.Controls.Add(this.CmbOptions);
+            this.panel1.Controls.Add(this.btnAddPoint);
+            this.panel1.Controls.Add(this.btnGet);
             this.panel1.Controls.Add(this.btnLoadMap);
             this.panel1.Controls.Add(this.txtLng);
             this.panel1.Controls.Add(this.txtLat);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(833, 105);
+            this.panel1.Size = new System.Drawing.Size(833, 99);
             this.panel1.TabIndex = 0;
             // 
-            // btnAddRoute
+            // CmbOptions
             // 
-            this.btnAddRoute.Location = new System.Drawing.Point(202, 12);
-            this.btnAddRoute.Name = "btnAddRoute";
-            this.btnAddRoute.Size = new System.Drawing.Size(101, 43);
-            this.btnAddRoute.TabIndex = 1;
-            this.btnAddRoute.Text = "Add Route";
-            this.btnAddRoute.UseVisualStyleBackColor = true;
-            this.btnAddRoute.Click += new System.EventHandler(this.btnAddRoute_Click);
+            this.CmbOptions.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.CmbOptions.FormattingEnabled = true;
+            this.CmbOptions.Items.AddRange(new object[] {
+            "Generate Route",
+            "Generate Polygon"});
+            this.CmbOptions.Location = new System.Drawing.Point(17, 19);
+            this.CmbOptions.Name = "CmbOptions";
+            this.CmbOptions.Size = new System.Drawing.Size(181, 26);
+            this.CmbOptions.TabIndex = 2;
+            this.CmbOptions.Text = "Generate Route";
+            this.CmbOptions.SelectedIndexChanged += new System.EventHandler(this.CmbOptions_SelectedIndexChanged);
             // 
-            // btnGetRoute
+            // btnAddPoint
             // 
-            this.btnGetRoute.Location = new System.Drawing.Point(202, 61);
-            this.btnGetRoute.Name = "btnGetRoute";
-            this.btnGetRoute.Size = new System.Drawing.Size(101, 35);
-            this.btnGetRoute.TabIndex = 1;
-            this.btnGetRoute.Text = "Get Route";
-            this.btnGetRoute.UseVisualStyleBackColor = true;
-            this.btnGetRoute.Click += new System.EventHandler(this.btnGetRoute_Click);
+            this.btnAddPoint.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAddPoint.Location = new System.Drawing.Point(129, 51);
+            this.btnAddPoint.Name = "btnAddPoint";
+            this.btnAddPoint.Size = new System.Drawing.Size(106, 28);
+            this.btnAddPoint.TabIndex = 1;
+            this.btnAddPoint.Text = "Add Point";
+            this.btnAddPoint.UseVisualStyleBackColor = true;
+            this.btnAddPoint.Click += new System.EventHandler(this.btnAdd);
+            // 
+            // btnGet
+            // 
+            this.btnGet.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGet.Location = new System.Drawing.Point(241, 51);
+            this.btnGet.Name = "btnGet";
+            this.btnGet.Size = new System.Drawing.Size(106, 28);
+            this.btnGet.TabIndex = 1;
+            this.btnGet.Text = "Get Route";
+            this.btnGet.UseVisualStyleBackColor = true;
+            this.btnGet.Click += new System.EventHandler(this.btnGet_Click);
             // 
             // btnLoadMap
             // 
-            this.btnLoadMap.Location = new System.Drawing.Point(309, 20);
+            this.btnLoadMap.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnLoadMap.Location = new System.Drawing.Point(17, 51);
             this.btnLoadMap.Name = "btnLoadMap";
-            this.btnLoadMap.Size = new System.Drawing.Size(106, 35);
+            this.btnLoadMap.Size = new System.Drawing.Size(106, 28);
             this.btnLoadMap.TabIndex = 1;
             this.btnLoadMap.Text = "Load Map";
             this.btnLoadMap.UseVisualStyleBackColor = true;
@@ -277,17 +293,19 @@
             // 
             // txtLng
             // 
-            this.txtLng.Location = new System.Drawing.Point(71, 52);
+            this.txtLng.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLng.Location = new System.Drawing.Point(335, 20);
             this.txtLng.Name = "txtLng";
-            this.txtLng.Size = new System.Drawing.Size(125, 26);
+            this.txtLng.Size = new System.Drawing.Size(125, 24);
             this.txtLng.TabIndex = 0;
             this.txtLng.Text = "67.0799";
             // 
             // txtLat
             // 
-            this.txtLat.Location = new System.Drawing.Point(71, 20);
+            this.txtLat.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtLat.Location = new System.Drawing.Point(204, 20);
             this.txtLat.Name = "txtLat";
-            this.txtLat.Size = new System.Drawing.Size(125, 26);
+            this.txtLat.Size = new System.Drawing.Size(125, 24);
             this.txtLat.TabIndex = 0;
             this.txtLat.Text = "24.8978";
             // 
@@ -303,10 +321,6 @@
             this.tabPage2.Text = "Output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
-            // sqLiteCommand1
-            // 
-            this.sqLiteCommand1.CommandText = null;
-            // 
             // txtOutput
             // 
             this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -316,15 +330,9 @@
             this.txtOutput.TabIndex = 0;
             this.txtOutput.Text = "";
             // 
-            // BtnAddPolygon
+            // sqLiteCommand1
             // 
-            this.BtnAddPolygon.Location = new System.Drawing.Point(309, 61);
-            this.BtnAddPolygon.Name = "BtnAddPolygon";
-            this.BtnAddPolygon.Size = new System.Drawing.Size(106, 35);
-            this.BtnAddPolygon.TabIndex = 1;
-            this.BtnAddPolygon.Text = "Add Polygon";
-            this.BtnAddPolygon.UseVisualStyleBackColor = true;
-            this.BtnAddPolygon.Click += new System.EventHandler(this.BtnAddPolygon_Click);
+            this.sqLiteCommand1.CommandText = null;
             // 
             // FrmGoogleMap
             // 
@@ -334,7 +342,11 @@
             this.ClientSize = new System.Drawing.Size(847, 349);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.ToolStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmGoogleMap";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmGoogleMap";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.ToolStrip1.ResumeLayout(false);
@@ -369,12 +381,12 @@
         private System.Windows.Forms.TextBox txtLng;
         private System.Windows.Forms.TextBox txtLat;
         private System.Windows.Forms.Button btnLoadMap;
-        private System.Windows.Forms.Button btnAddRoute;
-        private System.Windows.Forms.Button btnGetRoute;
+        private System.Windows.Forms.Button btnAddPoint;
+        private System.Windows.Forms.Button btnGet;
         private System.Windows.Forms.ToolStripButton btnZoomIn;
         private System.Windows.Forms.ToolStripButton BtnZoomOut;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
         private System.Windows.Forms.RichTextBox txtOutput;
-        private System.Windows.Forms.Button BtnAddPolygon;
+        private System.Windows.Forms.ComboBox CmbOptions;
     }
 }

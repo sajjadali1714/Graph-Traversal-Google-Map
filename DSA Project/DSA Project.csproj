@@ -90,11 +90,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\GoogleMap.cs" />
-    <Compile Include="Form1.cs">
+    <Compile Include="FrmGraph.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <Compile Include="FrmGraph.Designer.cs">
+      <DependentUpon>FrmGraph.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmGoogleMap.cs">
       <SubType>Form</SubType>
@@ -102,14 +102,23 @@
     <Compile Include="FrmGoogleMap.Designer.cs">
       <DependentUpon>FrmGoogleMap.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.Designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
     <Compile Include="GraphNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Form1.resx">
-      <DependentUpon>Form1.cs</DependentUpon>
+    <EmbeddedResource Include="FrmGraph.resx">
+      <DependentUpon>FrmGraph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmGoogleMap.resx">
       <DependentUpon>FrmGoogleMap.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

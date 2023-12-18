@@ -30,13 +30,14 @@ namespace DSA_Project
             map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), true);
         }
 
-        private void btnAddRoute_Click(object sender, EventArgs e)
+        private void btnAdd(object sender, EventArgs e)
         {
             try
             {
                 _points.Add(new PointLatLng(Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text)));
-                txtOutput.Text = "Route Addedd : latitude " + txtLat.Text + " longitude " + txtLng.Text + Environment.NewLine +txtOutput.Text;
-
+                txtOutput.Text = "Point Addedd : latitude " + txtLat.Text + " longitude " + txtLng.Text + Environment.NewLine +txtOutput.Text;
+                txtLng.Text = String.Empty;
+                txtLng.Text = String.Empty;
             }
             catch (Exception ex)
             {
@@ -45,14 +46,23 @@ namespace DSA_Project
 
         }
 
-        private void btnGetRoute_Click(object sender, EventArgs e)
+        private void btnGet_Click(object sender, EventArgs e)
         {
             try
             {
-                map.GetRoute(GoogleMap, _points[0], _points[1], 13);
-                map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
-                txtOutput.Text = "Route between : " + _points[0] + " and " + _points[1] + Environment.NewLine + txtOutput.Text;
-                _points.Clear();
+                if(btnGet.Text == "Get Route")
+                {
+                    map.GetRoute(GoogleMap, _points[0], _points[1], 13);
+                    map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
+                    txtOutput.Text = "Route between : " + _points[0] + " and " + _points[1] + Environment.NewLine + txtOutput.Text;
+                    _points.Clear();
+
+                } else if(btnGet.Text == "Get Polygon")
+                {
+                    map.GetPolygon(GoogleMap, _points, "My Area");
+                    map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
+                }
+                
             }
             catch (Exception ex)
             {
@@ -67,20 +77,24 @@ namespace DSA_Project
             _points.Clear();
         }
 
-        private void btnZoomIn_Click(object sender, EventArgs e)
-        {
-            
-
-        }
-
-        private void BtnAddPolygon_Click(object sender, EventArgs e)
+        private void CmbOptions_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                map.GetPolygon(GoogleMap,_points, "My Area");
-                map.loadMap(GoogleMap, Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text), false);
+                txtLat.Text = String.Empty;
+                txtLng.Text = String.Empty;
 
-            } catch(Exception ex)
+                _points.Clear();
+                if (CmbOptions.Text == "Generate Route")
+                {
+                    btnGet.Text = "Get Route";
+
+                } else if (CmbOptions.Text == "Generate Polygon")
+                {
+                    btnGet.Text = "Get Polygon";
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
