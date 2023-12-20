@@ -21,34 +21,18 @@ namespace DSA_Project.Classes
 
         }
 
-        public void loadMap(GMapControl Map, double latitude, double longitude, bool addMarker)
+        public void loadMap(GMapControl Map)
         {
             try
             {
                 Map.ShowCenter = false;
                 Map.DragButton = MouseButtons.Left;
                 Map.MapProvider = GMapProviders.GoogleMap;
-                Map.Position = new GMap.NET.PointLatLng(latitude, longitude);
+                Map.Position = new GMap.NET.PointLatLng(24.8978, 67.0799);
                 Map.MinZoom = 1;
                 Map.MaxZoom = 22;
-                Map.Zoom = 13;
-
-                if (addMarker == true)
-                {
-
-
-                    PointLatLng point = new GMap.NET.PointLatLng(latitude, longitude);
-                    GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
-
-                    // Create Overlay
-                    GMapOverlay markers = new GMapOverlay("markers");
-
-                    // Add all markers to that overlay
-                    markers.Markers.Add(marker);
-
-                    // Cover map with overlay
-                    Map.Overlays.Add(markers);
-                }
+                Map.Zoom = 13;                
+                
             }
             catch (Exception ex)
             {
@@ -56,13 +40,38 @@ namespace DSA_Project.Classes
             }
         }
 
-        public void GetRoute(GMapControl Map, PointLatLng start, PointLatLng end, int zoom)
+        public void addMarker(GMapControl Map, List<PointLatLng> points)
+        {
+            try
+            {
+
+
+                PointLatLng point = new GMap.NET.PointLatLng(points[points.Count - 1].Lat, points[points.Count - 1].Lng);
+                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
+
+                // Create Overlay
+                GMapOverlay markers = new GMapOverlay("markers");
+
+                // Add all markers to that overlay
+                markers.Markers.Add(marker);
+
+                // Cover map with overlay
+                Map.Overlays.Add(markers);
+
+            } catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+
+        public void GetRoute(GMapControl Map, List<PointLatLng> points, int zoom)
         {
             try
             {
                 Map.MapProvider = GMapProviders.GoogleMap;
 
-                Map.Position = start; // Set the map position to the starting point
+                Map.Position = points[points.Count - 1]; // Set the map position to the starting point
 
                 Map.MinZoom = 3;
                 Map.MaxZoom = 18;
@@ -70,7 +79,7 @@ namespace DSA_Project.Classes
 
                 // Create a route
                 
-                GMapRoute r = new GMapRoute(new List<PointLatLng> { start, end }, "My Route")
+                GMapRoute r = new GMapRoute(points, "My Route")
                 {
                     Stroke = new Pen(Color.Red, 5)
                 };

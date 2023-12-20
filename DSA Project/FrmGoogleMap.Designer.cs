@@ -299,6 +299,7 @@
             this.txtLng.Size = new System.Drawing.Size(125, 24);
             this.txtLng.TabIndex = 0;
             this.txtLng.Text = "67.0799";
+
             // 
             // txtLat
             // 
