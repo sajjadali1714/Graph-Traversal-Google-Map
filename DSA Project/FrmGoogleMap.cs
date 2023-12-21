@@ -164,7 +164,7 @@ namespace DSA_Project
 
                 if (GoogleMap.IsMouseOverMarker == true)
                 {
-
+                    
                     GMapMarker marker = GoogleMap.Overlays.SelectMany(overlay => overlay.Markers).FirstOrDefault(m => m.IsMouseOver);
 
                     if (marker != null)
@@ -180,15 +180,21 @@ namespace DSA_Project
 
                 if (count == 2)
                 {
-                    if (!txtOutput.Text.Contains("Route between : " + _connectNodes[0] + " and " + _connectNodes[1]))
+                    if (txtOutput.Text.Contains("Route between : " + _connectNodes[0] + " and " + _connectNodes[1]))
                     {
+                        
                         MessageBox.Show("Both Points Already Connected...");
                         txtOutput.Text = "Route Already Exists : " + _connectNodes[0] + " and " + _connectNodes[1] + Environment.NewLine + txtOutput.Text;
+                        _connectNodes.Clear();
+                        count = 0;
                     }
-                    else if (!txtOutput.Text.Contains("Route between : " + _connectNodes[1] + " and " + _connectNodes[0]))
+                    else if (txtOutput.Text.Contains("Route between : " + _connectNodes[1] + " and " + _connectNodes[0]))
                     {
+                        
                         MessageBox.Show("Both Points Already Connected...");
                         txtOutput.Text = "Route Already Exists : " + _connectNodes[1] + " and " + _connectNodes[0] + Environment.NewLine + txtOutput.Text;
+                        _connectNodes.Clear();
+                        count = 0;
                     }
                     else
                     {
