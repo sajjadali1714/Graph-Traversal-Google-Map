@@ -21,7 +21,7 @@ namespace DSA_Project.Classes
 
         }
 
-        public void loadMap(GMapControl Map)
+        public void loadMap(GMapControl Map, int zoom)
         {
             try
             {
@@ -114,6 +114,14 @@ namespace DSA_Project.Classes
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
+
+
+
+
+
+
+
+
 
 
 

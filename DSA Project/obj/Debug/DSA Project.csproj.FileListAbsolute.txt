@@ -51,7 +51,6 @@ D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\EntityFra
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Newtonsoft.Json.xml
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\System.Data.SQLite.xml
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA Project.csproj.AssemblyReference.cache
-D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.Form1.resources
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.FrmGoogleMap.resources
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.Properties.Resources.resources
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA Project.csproj.GenerateResource.cache
@@ -61,3 +60,5 @@ D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA Proje
 D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA Project.pdb
 D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.FrmMain.resources
 D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.FrmGraph.resources
+D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.FrmGraph.resources
+D:\Indus Uni Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA_Project.FrmMain.resources

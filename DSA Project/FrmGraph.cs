@@ -1,12 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DSA_Project
@@ -129,7 +123,7 @@ namespace DSA_Project
         {
             // Add a new node to the graph at the clicked location
             string newNodeName = $"{nodes.Count + 1}";
-            nodes.Add(new GraphNode(location, newNodeName));            
+            nodes.Add(new GraphNode(location, newNodeName,0.0,0.0));            
             // Redraw the entire graph
             pictureBox1.Invalidate();
         }

@@ -1,15 +1,8 @@
 ﻿using DSA_Project.Classes;
 using GMap.NET;
-using GMap.NET.MapProviders;
 using GMap.NET.WindowsForms;
 using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DSA_Project
@@ -18,17 +11,23 @@ namespace DSA_Project
     {
 
         private List<PointLatLng> _points;
+        private List<PointLatLng> _connectNodes;
         GoogleMap map = new GoogleMap();
+        private int zoomLevel = 13;
+        int count = 0;
+
+
         public FrmGoogleMap()
         {
             InitializeComponent();
             _points = new List<PointLatLng>();
-            map.loadMap(GoogleMap);
+            _connectNodes = new List<PointLatLng>();
+            map.loadMap(GoogleMap, zoomLevel);
         }
 
         private void btnLoadMap_Click(object sender, EventArgs e)
         {
-            map.loadMap(GoogleMap);
+            map.loadMap(GoogleMap, zoomLevel);
         }
 
         private void btnAdd(object sender, EventArgs e)
@@ -37,11 +36,12 @@ namespace DSA_Project
             {
                 _points.Add(new PointLatLng(Convert.ToDouble(txtLat.Text), Convert.ToDouble(txtLng.Text)));
                 map.addMarker(GoogleMap, _points);
-                if(btnGet.Text == "Get Route")
-                    map.GetRoute(GoogleMap, _points, 13);
-                
-                map.loadMap(GoogleMap);                
-                txtOutput.Text = "Point Addedd : latitude " + txtLat.Text + " longitude " + txtLng.Text + Environment.NewLine +txtOutput.Text;
+                if (btnGet.Text == "Get Route")
+                    map.GetRoute(GoogleMap, _points, zoomLevel);
+
+
+                map.loadMap(GoogleMap, zoomLevel);
+                txtOutput.Text = "Point Addedd : latitude " + txtLat.Text + " longitude " + txtLng.Text + Environment.NewLine + txtOutput.Text;
                 txtLat.Text = String.Empty;
                 txtLng.Text = String.Empty;
             }
@@ -56,25 +56,26 @@ namespace DSA_Project
         {
             try
             {
-                if(btnGet.Text == "Get Route")
+                if (btnGet.Text == "Get Route")
                 {
-                    if(_points.Count >= 2)
+                    if (_points.Count >= 2)
                     {
-                        map.GetRoute(GoogleMap, _points, 13);
-                        map.loadMap(GoogleMap);
-                        txtOutput.Text = "Route between : " + _points[0] + " and " + _points[1] + Environment.NewLine + txtOutput.Text;                        
+                        map.GetRoute(GoogleMap, _points, zoomLevel);
+                        map.loadMap(GoogleMap, zoomLevel);
+                        txtOutput.Text = "Route between : " + _points[0] + " and " + _points[1] + Environment.NewLine + txtOutput.Text;
                     }
-                    
 
-                } else if(btnGet.Text == "Get Polygon")
+
+                }
+                else if (btnGet.Text == "Get Polygon")
                 {
                     if (_points.Count >= 3)
                     {
                         map.GetPolygon(GoogleMap, _points, "My Area");
-                        map.loadMap(GoogleMap);
+                        map.loadMap(GoogleMap, zoomLevel);
                     }
                 }
-                
+
             }
             catch (Exception ex)
             {
@@ -101,7 +102,8 @@ namespace DSA_Project
                 {
                     btnGet.Text = "Get Route";
 
-                } else if (CmbOptions.Text == "Generate Polygon")
+                }
+                else if (CmbOptions.Text == "Generate Polygon")
                 {
                     btnGet.Text = "Get Polygon";
                 }
@@ -112,5 +114,75 @@ namespace DSA_Project
             }
         }
 
+
+
+         
+
+
+
+        private void trackBar1_MouseLeave(object sender, EventArgs e)
+        {
+            zoomLevel = tbZoom.Value; // Get the current value of the trackbar
+
+            // Call your function to update the map with the new zoom level
+            UpdateMapZoom(GoogleMap, zoomLevel);
+        }
+
+        private void UpdateMapZoom(GMapControl map, int zoom)
+        {
+            try
+            {
+                // Set the map zoom level
+                map.Zoom = zoom;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+        }
+
+        private void GoogleMap_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                if (e.Button == MouseButtons.Left)
+                {
+                    var point = GoogleMap.FromLocalToLatLng(e.X, e.Y);
+                    _points.Add(new PointLatLng(point.Lat, point.Lng));
+                    map.addMarker(GoogleMap, _points);
+                    map.loadMap(GoogleMap, zoomLevel);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
+
+        }
+
+        private void GoogleMap_MouseDown(object sender, MouseEventArgs e)
+        {
+            try
+            {
+                
+                if(GoogleMap.IsMouseOverMarker == true) { 
+                    var point = GoogleMap.FromLocalToLatLng(e.X, e.Y);
+                    _connectNodes.Add(new PointLatLng(point.Lat, point.Lng));
+                    count++;
+                }
+
+                if(count == 2)
+                {
+                    map.GetRoute(GoogleMap, _connectNodes,zoomLevel);
+                    map.loadMap(GoogleMap,zoomLevel);
+                    _connectNodes.Clear();
+                    count = 0;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

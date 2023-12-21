@@ -45,6 +45,7 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GoogleMap = new GMap.NET.WindowsForms.GMapControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.tbZoom = new System.Windows.Forms.TrackBar();
             this.CmbOptions = new System.Windows.Forms.ComboBox();
             this.btnAddPoint = new System.Windows.Forms.Button();
             this.btnGet = new System.Windows.Forms.Button();
@@ -58,6 +59,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbZoom)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -229,9 +231,12 @@
             this.GoogleMap.Size = new System.Drawing.Size(833, 193);
             this.GoogleMap.TabIndex = 1;
             this.GoogleMap.Zoom = 0D;
+            this.GoogleMap.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GoogleMap_MouseDoubleClick);
+            this.GoogleMap.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GoogleMap_MouseDown);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.tbZoom);
             this.panel1.Controls.Add(this.CmbOptions);
             this.panel1.Controls.Add(this.btnAddPoint);
             this.panel1.Controls.Add(this.btnGet);
@@ -243,6 +248,16 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(833, 99);
             this.panel1.TabIndex = 0;
+            // 
+            // tbZoom
+            // 
+            this.tbZoom.Location = new System.Drawing.Point(466, 20);
+            this.tbZoom.Name = "tbZoom";
+            this.tbZoom.Size = new System.Drawing.Size(204, 45);
+            this.tbZoom.TabIndex = 36;
+            this.tbZoom.TickFrequency = 5;
+            this.tbZoom.Value = 5;
+            this.tbZoom.MouseLeave += new System.EventHandler(this.trackBar1_MouseLeave);
             // 
             // CmbOptions
             // 
@@ -299,7 +314,6 @@
             this.txtLng.Size = new System.Drawing.Size(125, 24);
             this.txtLng.TabIndex = 0;
             this.txtLng.Text = "67.0799";
-
             // 
             // txtLat
             // 
@@ -356,6 +370,7 @@
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tbZoom)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -389,5 +404,6 @@
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
         private System.Windows.Forms.RichTextBox txtOutput;
         private System.Windows.Forms.ComboBox CmbOptions;
+        private System.Windows.Forms.TrackBar tbZoom;
     }
 }
