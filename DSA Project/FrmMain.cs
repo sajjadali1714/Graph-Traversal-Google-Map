@@ -37,5 +37,14 @@ namespace DSA_Project
             GP.Dock = DockStyle.Fill;
             GP.Show();
         }
+
+        private void treeVisualizationToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmTree FT = new FrmTree();
+            FT.MdiParent = this;
+            FT.WindowState = FormWindowState.Maximized;
+            FT.Dock = DockStyle.Fill;
+            FT.Show();
+        }
     }
 }

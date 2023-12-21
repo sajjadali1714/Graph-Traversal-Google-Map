@@ -90,6 +90,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\GoogleMap.cs" />
+    <Compile Include="DrawTree.cs" />
     <Compile Include="FrmGraph.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -108,6 +109,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmTree.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmTree.Designer.cs">
+      <DependentUpon>FrmTree.cs</DependentUpon>
+    </Compile>
     <Compile Include="GraphNode.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -119,6 +126,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmTree.resx">
+      <DependentUpon>FrmTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

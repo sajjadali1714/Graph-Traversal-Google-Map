@@ -161,8 +161,5 @@ namespace DSA_Project
                 TraverseDFS(connectedNode, visited);
             }
         }
-
-
-
     }    
 }

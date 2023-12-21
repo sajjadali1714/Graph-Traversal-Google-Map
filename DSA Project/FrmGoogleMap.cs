@@ -23,7 +23,7 @@ namespace DSA_Project
             _points = new List<PointLatLng>();
             _connectNodes = new List<PointLatLng>();
             map.loadMap(GoogleMap, zoomLevel);
-        }
+    }
 
         private void btnLoadMap_Click(object sender, EventArgs e)
         {
@@ -114,17 +114,10 @@ namespace DSA_Project
             }
         }
 
-
-
-         
-
-
-
         private void trackBar1_MouseLeave(object sender, EventArgs e)
         {
             zoomLevel = tbZoom.Value; // Get the current value of the trackbar
 
-            // Call your function to update the map with the new zoom level
             UpdateMapZoom(GoogleMap, zoomLevel);
         }
 
@@ -162,27 +155,30 @@ namespace DSA_Project
 
         private void GoogleMap_MouseDown(object sender, MouseEventArgs e)
         {
+            var point = GoogleMap.FromLocalToLatLng(e.X, e.Y);
             try
             {
-                
-                if(GoogleMap.IsMouseOverMarker == true) { 
-                    var point = GoogleMap.FromLocalToLatLng(e.X, e.Y);
+                if (GoogleMap.IsMouseOverMarker == true)
+                {
                     _connectNodes.Add(new PointLatLng(point.Lat, point.Lng));
                     count++;
                 }
 
-                if(count == 2)
+                if (count == 2)
                 {
-                    map.GetRoute(GoogleMap, _connectNodes,zoomLevel);
-                    map.loadMap(GoogleMap,zoomLevel);
+                    map.GetRoute(GoogleMap, _connectNodes, zoomLevel);
+                    map.loadMap(GoogleMap, zoomLevel);
                     _connectNodes.Clear();
                     count = 0;
                 }
+            
+            
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
         }
+
     }
 }

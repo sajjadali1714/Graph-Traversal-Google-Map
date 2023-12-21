@@ -140,6 +140,7 @@
             this.treeVisualizationToolStripMenuItem.Name = "treeVisualizationToolStripMenuItem";
             this.treeVisualizationToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.treeVisualizationToolStripMenuItem.Text = "Tree Visualization";
+            this.treeVisualizationToolStripMenuItem.Click += new System.EventHandler(this.treeVisualizationToolStripMenuItem_Click);
             // 
             // fileMenu
             // 
