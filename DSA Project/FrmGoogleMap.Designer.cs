@@ -53,8 +53,8 @@
             this.txtLng = new System.Windows.Forms.TextBox();
             this.txtLat = new System.Windows.Forms.TextBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.txtOutput = new System.Windows.Forms.RichTextBox();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            this.txtOutput = new System.Windows.Forms.TextBox();
             this.ToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -257,7 +257,6 @@
             this.tbZoom.TabIndex = 36;
             this.tbZoom.TickFrequency = 5;
             this.tbZoom.Value = 5;
-            this.tbZoom.MouseLeave += new System.EventHandler(this.trackBar1_MouseLeave);
             // 
             // CmbOptions
             // 
@@ -336,18 +335,18 @@
             this.tabPage2.Text = "Output";
             this.tabPage2.UseVisualStyleBackColor = true;
             // 
+            // sqLiteCommand1
+            // 
+            this.sqLiteCommand1.CommandText = null;
+            // 
             // txtOutput
             // 
             this.txtOutput.Dock = System.Windows.Forms.DockStyle.Fill;
             this.txtOutput.Location = new System.Drawing.Point(3, 3);
+            this.txtOutput.Multiline = true;
             this.txtOutput.Name = "txtOutput";
             this.txtOutput.Size = new System.Drawing.Size(833, 292);
             this.txtOutput.TabIndex = 0;
-            this.txtOutput.Text = "";
-            // 
-            // sqLiteCommand1
-            // 
-            this.sqLiteCommand1.CommandText = null;
             // 
             // FrmGoogleMap
             // 
@@ -372,6 +371,7 @@
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tbZoom)).EndInit();
             this.tabPage2.ResumeLayout(false);
+            this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -402,8 +402,8 @@
         private System.Windows.Forms.ToolStripButton btnZoomIn;
         private System.Windows.Forms.ToolStripButton BtnZoomOut;
         private System.Data.SQLite.SQLiteCommand sqLiteCommand1;
-        private System.Windows.Forms.RichTextBox txtOutput;
         private System.Windows.Forms.ComboBox CmbOptions;
         private System.Windows.Forms.TrackBar tbZoom;
+        private System.Windows.Forms.TextBox txtOutput;
     }
 }

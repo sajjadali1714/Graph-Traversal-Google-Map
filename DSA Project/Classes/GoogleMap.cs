@@ -76,25 +76,60 @@ namespace DSA_Project.Classes
                 Map.MinZoom = 3;
                 Map.MaxZoom = 18;
                 Map.Zoom = zoom;
+                if (!DoesRouteExist(Map, points))
+                {
 
-                // Create a route
                 
+                // Create a route                
                 GMapRoute r = new GMapRoute(points, "My Route")
                 {
-                    Stroke = new Pen(Color.Red, 5)
+                    Stroke = new Pen(Color.Red, 3)
                 };
 
                 GMapOverlay routes = new GMapOverlay("routes");
                 routes.Routes.Add(r);
 
                 Map.Overlays.Add(routes);
-                
+                }
+
+
             }
             catch (Exception ex)
             {
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
+
+        private bool DoesRouteExist(GMapControl Map, List<PointLatLng> points)
+        {
+            foreach (GMapOverlay overlay in Map.Overlays)
+            {
+                foreach (GMapRoute existingRoute in overlay.Routes)
+                {
+                    if (AreRoutesEqual(existingRoute.Points, points))
+                    {
+                        return true; // Route with the same set of points already exists
+                    }
+                }
+            }
+
+            return false; // No matching route found
+        }
+
+        private bool AreRoutesEqual(List<PointLatLng> route1, List<PointLatLng> route2)
+        {
+            if (route1.Count != route2.Count)
+                return false;
+
+            for (int i = 0; i < route1.Count; i++)
+            {
+                if (route1[i] != route2[i])
+                    return false;
+            }
+
+            return true;
+        }
+
 
 
         public void GetPolygon(GMapControl Map, List<PointLatLng> points, String name)

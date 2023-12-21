@@ -3,6 +3,7 @@ using GMap.NET;
 using GMap.NET.WindowsForms;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace DSA_Project
@@ -114,32 +115,26 @@ namespace DSA_Project
             }
         }
 
+        //private void trackBar1_MouseLeave(object sender, EventArgs e)
+        //{
+        //    zoomLevel = tbZoom.Value; // Get the current value of the trackbar
 
+        //    // Call your function to update the map with the new zoom level
+        //    UpdateMapZoom(GoogleMap, zoomLevel);
+        //}
 
-         
-
-
-
-        private void trackBar1_MouseLeave(object sender, EventArgs e)
-        {
-            zoomLevel = tbZoom.Value; // Get the current value of the trackbar
-
-            // Call your function to update the map with the new zoom level
-            UpdateMapZoom(GoogleMap, zoomLevel);
-        }
-
-        private void UpdateMapZoom(GMapControl map, int zoom)
-        {
-            try
-            {
-                // Set the map zoom level
-                map.Zoom = zoom;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-            }
-        }
+        //private void UpdateMapZoom(GMapControl map, int zoom)
+        //{
+        //    try
+        //    {
+        //        // Set the map zoom level
+        //        map.Zoom = zoom;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        MessageBox.Show("An error occurred: " + ex.Message);
+        //    }
+        //}
 
         private void GoogleMap_MouseDoubleClick(object sender, MouseEventArgs e)
         {
@@ -151,6 +146,7 @@ namespace DSA_Project
                     _points.Add(new PointLatLng(point.Lat, point.Lng));
                     map.addMarker(GoogleMap, _points);
                     map.loadMap(GoogleMap, zoomLevel);
+                    txtOutput.Text = "Point Addedd : latitude " + point.Lat + " longitude " + point.Lng + Environment.NewLine + txtOutput.Text;
                 }
             }
             catch (Exception ex)
@@ -164,19 +160,44 @@ namespace DSA_Project
         {
             try
             {
-                
-                if(GoogleMap.IsMouseOverMarker == true) { 
+
+
+                if (GoogleMap.IsMouseOverMarker == true)
+                {
+
+                    GMapMarker marker = GoogleMap.Overlays.SelectMany(overlay => overlay.Markers).FirstOrDefault(m => m.IsMouseOver);
+
+                    if (marker != null)
+                    {
+                        // Access the Position property to get the latitude and longitude                        
+                        txtOutput.Text = marker.Position.Lat + " - " + marker.Position.Lng + Environment.NewLine + txtOutput.Text;
+                    }
                     var point = GoogleMap.FromLocalToLatLng(e.X, e.Y);
-                    _connectNodes.Add(new PointLatLng(point.Lat, point.Lng));
+
+                    _connectNodes.Add(new PointLatLng(marker.Position.Lat, marker.Position.Lng));
                     count++;
                 }
 
-                if(count == 2)
+                if (count == 2)
                 {
-                    map.GetRoute(GoogleMap, _connectNodes,zoomLevel);
-                    map.loadMap(GoogleMap,zoomLevel);
-                    _connectNodes.Clear();
-                    count = 0;
+                    if (!txtOutput.Text.Contains("Route between : " + _connectNodes[0] + " and " + _connectNodes[1]))
+                    {
+                        MessageBox.Show("Both Points Already Connected...");
+                        txtOutput.Text = "Route Already Exists : " + _connectNodes[0] + " and " + _connectNodes[1] + Environment.NewLine + txtOutput.Text;
+                    }
+                    else if (!txtOutput.Text.Contains("Route between : " + _connectNodes[1] + " and " + _connectNodes[0]))
+                    {
+                        MessageBox.Show("Both Points Already Connected...");
+                        txtOutput.Text = "Route Already Exists : " + _connectNodes[1] + " and " + _connectNodes[0] + Environment.NewLine + txtOutput.Text;
+                    }
+                    else
+                    {
+                        map.GetRoute(GoogleMap, _connectNodes, zoomLevel);
+                        map.loadMap(GoogleMap, zoomLevel);
+                        txtOutput.Text = "Route between : " + _connectNodes[0] + " and " + _connectNodes[1] + Environment.NewLine + txtOutput.Text;
+                        _connectNodes.Clear();
+                        count = 0;
+                    }
                 }
             }
             catch (Exception ex)
