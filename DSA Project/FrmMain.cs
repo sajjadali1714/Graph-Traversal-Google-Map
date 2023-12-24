@@ -1,4 +1,6 @@
-﻿using System;
+﻿using DSA_Project.Classes;
+using GMap.NET;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -7,9 +9,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Windows.Forms.VisualStyles;
 
 namespace DSA_Project
 {
+    
+
     public partial class FrmMain : Form
     {
         private int childFormNumber = 0;
@@ -17,6 +22,8 @@ namespace DSA_Project
         public FrmMain()
         {
             InitializeComponent();
+            GraphHandler graph = new GraphHandler();
+            graph.CreateGraph();
         }
 
         

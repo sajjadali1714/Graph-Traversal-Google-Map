@@ -10,7 +10,7 @@ namespace DSA_Project
         public Point Location { get; set; }
         public string Name { get; set; }
         public double lat { get; set; }
-        public double lng { get; set; }
+        public double lng { get; set; }       
 
         public List<GraphNode> ConnectedNodes { get; } = new List<GraphNode>();
 

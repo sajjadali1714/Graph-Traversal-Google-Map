@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace DSA_Project
@@ -130,7 +131,7 @@ namespace DSA_Project
 
         private void addButton_Click(object sender, EventArgs e)
         {
-            GraphNode node = new GraphNode();
+            GraphNode node = new GraphNode();            
             DepthFirstSearch(node);          
         }
 
@@ -150,11 +151,16 @@ namespace DSA_Project
         {
             if (currentNode == null || visited.Contains(currentNode))
             {
+                pic_arrow.Visible = false;
                 return;
-            }
+            } 
 
             visited.Add(currentNode);
             textBox1.Text = textBox1.Text + $"Visited node: {currentNode.Name}" + Environment.NewLine;
+            
+            pic_arrow.Location = new Point(currentNode.Location.X - 90, currentNode.Location.Y - 15);
+            pic_arrow.Visible = true;
+            Thread.Sleep(1000);
 
             foreach (GraphNode connectedNode in currentNode.ConnectedNodes)
             {
