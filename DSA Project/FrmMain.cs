@@ -22,8 +22,6 @@ namespace DSA_Project
         public FrmMain()
         {
             InitializeComponent();
-            GraphHandler graph = new GraphHandler();
-            graph.CreateGraph();
         }
 
         

@@ -5,11 +5,6 @@ using GMap.NET.WindowsForms.Markers;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
-using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace DSA_Project.Classes
@@ -31,7 +26,7 @@ namespace DSA_Project.Classes
                 Map.Position = new GMap.NET.PointLatLng(24.8978, 67.0799);
                 Map.MinZoom = 1;
                 Map.MaxZoom = 22;
-                Map.Zoom = 13;                
+                Map.Zoom = 13;
                 
             }
             catch (Exception ex)
@@ -40,17 +35,26 @@ namespace DSA_Project.Classes
             }
         }
 
-        public void addMarker(GMapControl Map, List<PointLatLng> points)
+        public void addMarker(GMapControl Map, List<PointLatLng> points,int Node)
         {
             try
             {
-
-
                 PointLatLng point = new GMap.NET.PointLatLng(points[points.Count - 1].Lat, points[points.Count - 1].Lng);
                 GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
-
+                
                 // Create Overlay
                 GMapOverlay markers = new GMapOverlay("markers");
+
+                //ToolTip
+                
+                marker.ToolTipText = $"Node : {Node},\nLatitude      : {marker.Position.Lat} \nLongitude : {marker.Position.Lng} ";
+                
+                var toolTip = new GMapToolTip(marker);
+                toolTip.Fill = new SolidBrush(Color.Aqua);
+                toolTip.Foreground = new SolidBrush(Color.Black);
+                toolTip.Offset = new Point(50, -50);
+                toolTip.Stroke = new Pen(new SolidBrush(Color.Aqua));
+                marker.ToolTip = toolTip;
 
                 // Add all markers to that overlay
                 markers.Markers.Add(marker);
@@ -76,9 +80,6 @@ namespace DSA_Project.Classes
                 Map.MinZoom = 3;
                 Map.MaxZoom = 18;
                 Map.Zoom = zoom;
-                if (!DoesRouteExist(Map, points))
-                {
-
                 
                 // Create a route                
                 GMapRoute r = new GMapRoute(points, "My Route")
@@ -89,8 +90,7 @@ namespace DSA_Project.Classes
                 GMapOverlay routes = new GMapOverlay("routes");
                 routes.Routes.Add(r);
 
-                Map.Overlays.Add(routes);
-                }
+                Map.Overlays.Add(routes);               
 
 
             }
@@ -99,39 +99,6 @@ namespace DSA_Project.Classes
                 MessageBox.Show("An error occurred: " + ex.Message);
             }
         }
-
-        private bool DoesRouteExist(GMapControl Map, List<PointLatLng> points)
-        {
-            foreach (GMapOverlay overlay in Map.Overlays)
-            {
-                foreach (GMapRoute existingRoute in overlay.Routes)
-                {
-                    if (AreRoutesEqual(existingRoute.Points, points))
-                    {
-                        return true; // Route with the same set of points already exists
-                    }
-                }
-            }
-
-            return false; // No matching route found
-        }
-
-        private bool AreRoutesEqual(List<PointLatLng> route1, List<PointLatLng> route2)
-        {
-            if (route1.Count != route2.Count)
-                return false;
-
-            for (int i = 0; i < route1.Count; i++)
-            {
-                if (route1[i] != route2[i])
-                    return false;
-            }
-
-            return true;
-        }
-
-
-
         public void GetPolygon(GMapControl Map, List<PointLatLng> points, String name)
         {
             try
@@ -150,17 +117,7 @@ namespace DSA_Project.Classes
             }
         }
 
-
-
-
-
-
-
-
-
-
-
-
+       
 
     }
 }

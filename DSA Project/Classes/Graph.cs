@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
 namespace DSA_Project.Classes
 {
@@ -8,15 +9,14 @@ namespace DSA_Project.Classes
     {
         private Graph graph;
 
-        public GraphHandler()
+        public GraphHandler(int n)
         {
-            InitializeGraph();
-            PrintGraph();
+            InitializeGraph(n);
         }
 
-        private void InitializeGraph()
+        private void InitializeGraph(int n)
         {
-            graph = new Graph(6);
+            graph = new Graph(n);
         }
 
         public Graph CreateGraph(List<Edge> edges)
@@ -40,23 +40,34 @@ namespace DSA_Project.Classes
             return newGraph;
         }
 
-        public void AddEdges()
+        public void AddEdge(Edge edge)
         {
-            List<Edge> userEdges = new List<Edge>();
+            int src = edge.Src;
+            int dest = edge.Dest;
+
+            Node newNode = new Node
+            {
+                Dest = dest,
+                Next = graph.Head[src]
+            };
+
+            graph.Head[src] = newNode;
         }
 
-        private void PrintGraph()
+        public String PrintGraph()
         {
+            string v_return = string.Empty;
             for (int i = 0; i < graph.Head.Length; i++)
             {
                 Node ptr = graph.Head[i];
                 while (ptr != null)
                 {
-                    Console.Write($"({i} -> {ptr.Dest})\t ");
+                    v_return = v_return + $"({i} -> {ptr.Dest})\t ";
                     ptr = ptr.Next;
                 }
-                Console.WriteLine();
+                v_return = v_return + Environment.NewLine;
             }
+            return v_return;
         }
     }
 
@@ -85,6 +96,7 @@ namespace DSA_Project.Classes
     // Create Graph Edges / Connection
     public class Edge
     {
+
         public int Src { get; set; }
         public int Dest { get; set; }
     }
