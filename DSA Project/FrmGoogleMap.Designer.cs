@@ -45,16 +45,18 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GoogleMap = new GMap.NET.WindowsForms.GMapControl();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.pic_arrow = new System.Windows.Forms.PictureBox();
+            this.btnAdjacencyMatrix = new System.Windows.Forms.Button();
+            this.btnAdjacencyList = new System.Windows.Forms.Button();
             this.btnGetPolygon = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
-            this.btnAdjacencyList = new System.Windows.Forms.Button();
-            this.btnAdjacencyMatrix = new System.Windows.Forms.Button();
             this.ToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_arrow)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -230,6 +232,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.pic_arrow);
             this.panel1.Controls.Add(this.btnAdjacencyMatrix);
             this.panel1.Controls.Add(this.btnAdjacencyList);
             this.panel1.Controls.Add(this.btnGetPolygon);
@@ -238,6 +241,38 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(833, 61);
             this.panel1.TabIndex = 0;
+            // 
+            // pic_arrow
+            // 
+            this.pic_arrow.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pic_arrow.Image = ((System.Drawing.Image)(resources.GetObject("pic_arrow.Image")));
+            this.pic_arrow.Location = new System.Drawing.Point(767, 16);
+            this.pic_arrow.Name = "pic_arrow";
+            this.pic_arrow.Size = new System.Drawing.Size(61, 29);
+            this.pic_arrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_arrow.TabIndex = 4;
+            this.pic_arrow.TabStop = false;
+            // 
+            // btnAdjacencyMatrix
+            // 
+            this.btnAdjacencyMatrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdjacencyMatrix.Location = new System.Drawing.Point(255, 17);
+            this.btnAdjacencyMatrix.Name = "btnAdjacencyMatrix";
+            this.btnAdjacencyMatrix.Size = new System.Drawing.Size(132, 28);
+            this.btnAdjacencyMatrix.TabIndex = 1;
+            this.btnAdjacencyMatrix.Text = "Adjacency Matrix";
+            this.btnAdjacencyMatrix.UseVisualStyleBackColor = true;
+            // 
+            // btnAdjacencyList
+            // 
+            this.btnAdjacencyList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAdjacencyList.Location = new System.Drawing.Point(117, 17);
+            this.btnAdjacencyList.Name = "btnAdjacencyList";
+            this.btnAdjacencyList.Size = new System.Drawing.Size(132, 28);
+            this.btnAdjacencyList.TabIndex = 1;
+            this.btnAdjacencyList.Text = "Adjacency List";
+            this.btnAdjacencyList.UseVisualStyleBackColor = true;
+            this.btnAdjacencyList.Click += new System.EventHandler(this.btnAdjacencyList_Click);
             // 
             // btnGetPolygon
             // 
@@ -275,28 +310,6 @@
             // 
             this.sqLiteCommand1.CommandText = null;
             // 
-            // btnAdjacencyList
-            // 
-            this.btnAdjacencyList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdjacencyList.Location = new System.Drawing.Point(117, 17);
-            this.btnAdjacencyList.Name = "btnAdjacencyList";
-            this.btnAdjacencyList.Size = new System.Drawing.Size(132, 28);
-            this.btnAdjacencyList.TabIndex = 1;
-            this.btnAdjacencyList.Text = "Adjacency List";
-            this.btnAdjacencyList.UseVisualStyleBackColor = true;
-            this.btnAdjacencyList.Click += new System.EventHandler(this.btnAdjacencyList_Click);
-            // 
-            // btnAdjacencyMatrix
-            // 
-            this.btnAdjacencyMatrix.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdjacencyMatrix.Location = new System.Drawing.Point(255, 17);
-            this.btnAdjacencyMatrix.Name = "btnAdjacencyMatrix";
-            this.btnAdjacencyMatrix.Size = new System.Drawing.Size(132, 28);
-            this.btnAdjacencyMatrix.TabIndex = 1;
-            this.btnAdjacencyMatrix.Text = "Adjacency Matrix";
-            this.btnAdjacencyMatrix.UseVisualStyleBackColor = true;
-            this.btnAdjacencyMatrix.Click += new System.EventHandler(this.btnAdjacencyMatrix_Click);
-            // 
             // FrmGoogleMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,6 +330,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pic_arrow)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -348,5 +362,6 @@
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Button btnAdjacencyMatrix;
         private System.Windows.Forms.Button btnAdjacencyList;
+        private System.Windows.Forms.PictureBox pic_arrow;
     }
 }

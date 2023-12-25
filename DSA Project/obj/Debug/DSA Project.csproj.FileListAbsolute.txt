@@ -68,3 +68,8 @@ D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Janus.Windows
 D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Janus.Windows.Common.v4.xml
 D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Janus.Windows.Ribbon.v4.xml
 D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Janus.Windows.UI.v4.xml
+D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Infragistics4.Shared.v15.1.dll
+D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Infragistics4.Win.v15.1.dll
+D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Infragistics4.Shared.v15.1.xml
+D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\bin\Debug\Infragistics4.Win.v15.1.xml
+D:\Indus\Projects\Graph-Traversal-Google-Map\DSA Project\obj\Debug\DSA Project.exe.licenses

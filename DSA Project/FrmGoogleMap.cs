@@ -81,8 +81,10 @@ namespace DSA_Project
                 }
                 _graph = graph.CreateGraph(edges);
                 txtOutput.Text = graph.PrintGraph() + Environment.NewLine;
-                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph,0) + Environment.NewLine + txtOutput.Text;
-                txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0) + Environment.NewLine + txtOutput.Text;
+                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph,0,pic_arrow) + Environment.NewLine + txtOutput.Text;
+                txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0, pic_arrow) + Environment.NewLine + txtOutput.Text;
+                pic_arrow.Visible = true;
+                pic_arrow.BringToFront();
             }
             catch (Exception ex)
             {
@@ -91,17 +93,7 @@ namespace DSA_Project
 
         }
 
-        private void btnAdjacencyMatrix_Click(object sender, EventArgs e)
-        {
-            try
-            {
-               
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show("An error occurred: " + ex.Message);
-            }
-        }
+       
 
         private void GoogleMap_MouseDown(object sender, MouseEventArgs e)
         {
@@ -125,6 +117,7 @@ namespace DSA_Project
                 {
                     src = marker.ToolTipText.Split(',');
 
+
                 } else if (count == 2)
                 {
                     if (txtOutput.Text.Contains("Route between : " + _connectNodes[0] + " and " + _connectNodes[1]))
@@ -146,8 +139,11 @@ namespace DSA_Project
                     else
                     {
                         dest = marker.ToolTipText.Split(',');
-                        edges.Add(new Edge { Src = int.Parse(src[0].Substring(7)), Dest = int.Parse(dest[0].Substring(7)) });
-                        edges.Add(new Edge { Src = int.Parse(dest[0].Substring(7)), Dest = int.Parse(src[0].Substring(7)) });
+                        //edges.Add(new Edge { Src = int.Parse(src[0].Substring(7)), Dest = int.Parse(dest[0].Substring(7)), src_point = _connectNodes[0].Lat, dest_point = _connectNodes[1].Lng });
+                        //edges.Add(new Edge { Src = int.Parse(dest[0].Substring(7)), Dest = int.Parse(src[0].Substring(7)), src_point = _connectNodes[1].Lat, dest_point = _connectNodes[0].Lng });
+
+                        edges.Add(new Edge { Src = int.Parse(src[0].Substring(7)), Dest = int.Parse(dest[0].Substring(7)), src_point = marker.LocalPosition.X, dest_point = marker.LocalPosition.Y });
+                        edges.Add(new Edge { Src = int.Parse(dest[0].Substring(7)), Dest = int.Parse(src[0].Substring(7)), src_point = marker.LocalPosition.X, dest_point = marker.LocalPosition.Y });
 
                         map.GetRoute(GoogleMap, _connectNodes, zoomLevel);
                         map.loadMap(GoogleMap, zoomLevel);

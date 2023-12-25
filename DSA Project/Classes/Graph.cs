@@ -1,4 +1,5 @@
-﻿using System;
+﻿using GMap.NET;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 
@@ -27,11 +28,15 @@ namespace DSA_Project.Classes
             {
                 int src = edge.Src;
                 int dest = edge.Dest;
+                int lat = edge.src_point;
+                int lng = edge.dest_point;
 
                 Node newNode = new Node
                 {
                     Dest = dest,
-                    Next = newGraph.Head[src]
+                    Next = newGraph.Head[src],
+                    src_point = edge.src_point,
+                    dest_point = edge.dest_point
                 };
 
                 newGraph.Head[src] = newNode;
@@ -44,12 +49,16 @@ namespace DSA_Project.Classes
         {
             int src = edge.Src;
             int dest = edge.Dest;
+            int src_point = edge.src_point;
+            int dest_point = edge.dest_point;
 
             Node newNode = new Node
             {
                 Dest = dest,
-                Next = graph.Head[src]
-            };
+                Next = graph.Head[src],
+                src_point = edge.src_point,
+                dest_point = edge.dest_point
+        };
 
             graph.Head[src] = newNode;
         }
@@ -91,6 +100,8 @@ namespace DSA_Project.Classes
     {
         public int Dest { get; set; }
         public Node Next { get; set; }
+        public int src_point { get; set; }
+        public int dest_point { get; set; }
     }
 
     // Create Graph Edges / Connection
@@ -99,6 +110,8 @@ namespace DSA_Project.Classes
 
         public int Src { get; set; }
         public int Dest { get; set; }
+        public int src_point { get; set; }
+        public int dest_point { get; set; }
     }
 
 
