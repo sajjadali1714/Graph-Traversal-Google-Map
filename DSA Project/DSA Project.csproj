@@ -94,6 +94,7 @@
   <ItemGroup>
     <Compile Include="Classes\Graph.cs" />
     <Compile Include="Classes\GoogleMap.cs" />
+    <Compile Include="Classes\Traversal.cs" />
     <Compile Include="FrmGraph.cs">
       <SubType>Form</SubType>
     </Compile>

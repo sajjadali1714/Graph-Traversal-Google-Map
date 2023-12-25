@@ -13,12 +13,14 @@ namespace DSA_Project
 
         private List<PointLatLng> _points;
         private List<PointLatLng> _connectNodes;
-        private List<Edge> edges = new List<Edge>();
-        GoogleMap map = new GoogleMap();        
+        private List<Edge> edges = new List<Edge>();        
+        GoogleMap map = new GoogleMap(); 
+        Traversal traversal = new Traversal();
         private int zoomLevel = 13;
         int count = 0;
         int totalMarkers = 0;
         String[] src, dest;
+        private Graph _graph;
 
 
 
@@ -77,8 +79,10 @@ namespace DSA_Project
                 {
                     graph.AddEdge(edge);
                 }
-                graph.CreateGraph(edges);
+                _graph = graph.CreateGraph(edges);
                 txtOutput.Text = graph.PrintGraph() + Environment.NewLine;
+                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph,0) + Environment.NewLine + txtOutput.Text;
+                txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0) + Environment.NewLine + txtOutput.Text;
             }
             catch (Exception ex)
             {
