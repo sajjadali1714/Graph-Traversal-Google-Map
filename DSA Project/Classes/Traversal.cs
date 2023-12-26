@@ -1,8 +1,10 @@
-﻿using System;
+﻿using GMap.NET.WindowsForms;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,28 +12,29 @@ namespace DSA_Project.Classes
 {
     public class Traversal
     {
+        GoogleMap map = new GoogleMap();
         private bool[] visited;
         string v_return = string.Empty;
 
-        public string DepthFirstSearch(Graph graph, int startVertex, PictureBox pic_arrow)
+        public string DepthFirstSearch(Graph graph, int startVertex, GMapControl GoogleMap)
         {
             v_return = string.Empty;
             int vertices = graph.Head.Length;
             visited = new bool[vertices];
-            v_return = DFS(graph, startVertex, pic_arrow);
+            v_return = DFS(graph, startVertex, GoogleMap);
             return v_return;
         }
 
-        public string BreadthFirstSearch(Graph graph, int startVertex, PictureBox pic_arrow)
+        public string BreadthFirstSearch(Graph graph, int startVertex, GMapControl GoogleMap)
         {
             v_return = string.Empty;
             int vertices = graph.Head.Length;
             visited = new bool[vertices];
-            v_return = BFS(graph, startVertex, pic_arrow);
+            v_return = BFS(graph, startVertex, GoogleMap);
             return v_return;
         }
 
-        private string DFS(Graph graph, int vertex,PictureBox pic_arrow)
+        private string DFS(Graph graph, int vertex,GMapControl GoogleMap)
         {
             visited[vertex] = true;
             v_return = v_return +  $" {vertex} ";
@@ -42,9 +45,8 @@ namespace DSA_Project.Classes
                 int adjVertex = node.Dest;
                 if (!visited[adjVertex])
                 {
-                    pic_arrow.Location = new Point(int.Parse(node.src_point.ToString()), int.Parse(node.dest_point.ToString()));
-                    pic_arrow.Visible = true;
-                    DFS(graph, adjVertex, pic_arrow);
+                    map.addMarker(GoogleMap, null, -1, GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
+                    DFS(graph, adjVertex, GoogleMap);
                     
 
                 }
@@ -54,7 +56,7 @@ namespace DSA_Project.Classes
             return v_return;
         }
 
-        private string BFS(Graph graph, int startVertex, PictureBox pic_arrow)
+        private string BFS(Graph graph, int startVertex, GMapControl GoogleMap)
         {
             Queue<int> queue = new Queue<int>();
             visited[startVertex] = true;
@@ -73,8 +75,7 @@ namespace DSA_Project.Classes
                     {
                         visited[adjVertex] = true;
                         queue.Enqueue(adjVertex);
-                        pic_arrow.Location = new Point(int.Parse(node.src_point.ToString()), int.Parse(node.dest_point.ToString()));
-                        pic_arrow.Visible = true;
+                        
                     }
                     node = node.Next;
                 }

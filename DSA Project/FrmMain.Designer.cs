@@ -33,7 +33,6 @@
             this.menuStrip = new System.Windows.Forms.MenuStrip();
             this.menuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.googleMapVisualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.graphVisualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.treeVisualizationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.fileMenu = new System.Windows.Forms.ToolStripMenuItem();
             this.newToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -115,7 +114,6 @@
             // 
             this.menuToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.googleMapVisualizationToolStripMenuItem,
-            this.graphVisualizationToolStripMenuItem,
             this.treeVisualizationToolStripMenuItem});
             this.menuToolStripMenuItem.Name = "menuToolStripMenuItem";
             this.menuToolStripMenuItem.Size = new System.Drawing.Size(50, 20);
@@ -128,18 +126,12 @@
             this.googleMapVisualizationToolStripMenuItem.Text = "Google Map Visualization";
             this.googleMapVisualizationToolStripMenuItem.Click += new System.EventHandler(this.googleMapVisualizationToolStripMenuItem_Click);
             // 
-            // graphVisualizationToolStripMenuItem
-            // 
-            this.graphVisualizationToolStripMenuItem.Name = "graphVisualizationToolStripMenuItem";
-            this.graphVisualizationToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.graphVisualizationToolStripMenuItem.Text = "Graph Visualization";
-            this.graphVisualizationToolStripMenuItem.Click += new System.EventHandler(this.graphVisualizationToolStripMenuItem_Click);
-            // 
             // treeVisualizationToolStripMenuItem
             // 
             this.treeVisualizationToolStripMenuItem.Name = "treeVisualizationToolStripMenuItem";
             this.treeVisualizationToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.treeVisualizationToolStripMenuItem.Text = "Tree Visualization";
+            this.treeVisualizationToolStripMenuItem.Click += new System.EventHandler(this.treeVisualizationToolStripMenuItem_Click);
             // 
             // fileMenu
             // 
@@ -666,7 +658,6 @@
         private System.Windows.Forms.ToolStripMenuItem frmTreeToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem menuToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem googleMapVisualizationToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem graphVisualizationToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem treeVisualizationToolStripMenuItem;
     }
 }

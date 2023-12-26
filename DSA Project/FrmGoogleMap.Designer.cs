@@ -45,19 +45,19 @@
             this.tabPage1 = new System.Windows.Forms.TabPage();
             this.GoogleMap = new GMap.NET.WindowsForms.GMapControl();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pic_arrow = new System.Windows.Forms.PictureBox();
             this.btnAdjacencyMatrix = new System.Windows.Forms.Button();
             this.btnAdjacencyList = new System.Windows.Forms.Button();
             this.btnGetPolygon = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            this.pic_arrow = new System.Windows.Forms.PictureBox();
             this.ToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pic_arrow)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_arrow)).BeginInit();
             this.SuspendLayout();
             // 
             // ToolStrip1
@@ -190,6 +190,7 @@
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.pic_arrow);
             this.tabPage1.Controls.Add(this.GoogleMap);
             this.tabPage1.Controls.Add(this.panel1);
             this.tabPage1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -232,7 +233,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.pic_arrow);
             this.panel1.Controls.Add(this.btnAdjacencyMatrix);
             this.panel1.Controls.Add(this.btnAdjacencyList);
             this.panel1.Controls.Add(this.btnGetPolygon);
@@ -241,17 +241,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(833, 61);
             this.panel1.TabIndex = 0;
-            // 
-            // pic_arrow
-            // 
-            this.pic_arrow.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
-            this.pic_arrow.Image = ((System.Drawing.Image)(resources.GetObject("pic_arrow.Image")));
-            this.pic_arrow.Location = new System.Drawing.Point(767, 16);
-            this.pic_arrow.Name = "pic_arrow";
-            this.pic_arrow.Size = new System.Drawing.Size(61, 29);
-            this.pic_arrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pic_arrow.TabIndex = 4;
-            this.pic_arrow.TabStop = false;
             // 
             // btnAdjacencyMatrix
             // 
@@ -310,6 +299,17 @@
             // 
             this.sqLiteCommand1.CommandText = null;
             // 
+            // pic_arrow
+            // 
+            this.pic_arrow.BackColor = System.Drawing.SystemColors.GradientInactiveCaption;
+            this.pic_arrow.Image = ((System.Drawing.Image)(resources.GetObject("pic_arrow.Image")));
+            this.pic_arrow.Location = new System.Drawing.Point(770, 70);
+            this.pic_arrow.Name = "pic_arrow";
+            this.pic_arrow.Size = new System.Drawing.Size(61, 29);
+            this.pic_arrow.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pic_arrow.TabIndex = 5;
+            this.pic_arrow.TabStop = false;
+            // 
             // FrmGoogleMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -330,9 +330,9 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.pic_arrow)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pic_arrow)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -362,6 +362,6 @@
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Button btnAdjacencyMatrix;
         private System.Windows.Forms.Button btnAdjacencyList;
-        private System.Windows.Forms.PictureBox pic_arrow;
+        public System.Windows.Forms.PictureBox pic_arrow;
     }
 }

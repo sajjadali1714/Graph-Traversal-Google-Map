@@ -27,7 +27,7 @@ namespace DSA_Project.Classes
                 Map.MinZoom = 1;
                 Map.MaxZoom = 22;
                 Map.Zoom = 13;
-                
+
             }
             catch (Exception ex)
             {
@@ -35,26 +35,28 @@ namespace DSA_Project.Classes
             }
         }
 
-        public void addMarker(GMapControl Map, List<PointLatLng> points,int Node)
+        public void addMarker(GMapControl Map, List<PointLatLng> points, int Node, GMarkerGoogleType GMarkerGoogleType)
         {
             try
             {
                 PointLatLng point = new GMap.NET.PointLatLng(points[points.Count - 1].Lat, points[points.Count - 1].Lng);
-                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType.red_dot);
-                
+                GMapMarker marker = new GMarkerGoogle(point, GMarkerGoogleType);
+
                 // Create Overlay
                 GMapOverlay markers = new GMapOverlay("markers");
 
                 //ToolTip
-                
-                marker.ToolTipText = $"Node : {Node},\nLatitude      : {marker.Position.Lat} \nLongitude : {marker.Position.Lng} ";
-                
-                var toolTip = new GMapToolTip(marker);
-                toolTip.Fill = new SolidBrush(Color.Aqua);
-                toolTip.Foreground = new SolidBrush(Color.Black);
-                toolTip.Offset = new Point(50, -50);
-                toolTip.Stroke = new Pen(new SolidBrush(Color.Aqua));
-                marker.ToolTip = toolTip;
+                if (Node >= 0)
+                {
+                    marker.ToolTipText = $"Node : {Node},\nLatitude      : {marker.Position.Lat} \nLongitude : {marker.Position.Lng} ";
+
+                    var toolTip = new GMapToolTip(marker);
+                    toolTip.Fill = new SolidBrush(Color.Aqua);
+                    toolTip.Foreground = new SolidBrush(Color.Black);
+                    toolTip.Offset = new Point(50, -50);
+                    toolTip.Stroke = new Pen(new SolidBrush(Color.Aqua));
+                    marker.ToolTip = toolTip;
+                }
 
                 // Add all markers to that overlay
                 markers.Markers.Add(marker);
@@ -62,7 +64,8 @@ namespace DSA_Project.Classes
                 // Cover map with overlay
                 Map.Overlays.Add(markers);
 
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -80,7 +83,7 @@ namespace DSA_Project.Classes
                 Map.MinZoom = 3;
                 Map.MaxZoom = 18;
                 Map.Zoom = zoom;
-                
+
                 // Create a route                
                 GMapRoute r = new GMapRoute(points, "My Route")
                 {
@@ -90,7 +93,7 @@ namespace DSA_Project.Classes
                 GMapOverlay routes = new GMapOverlay("routes");
                 routes.Routes.Add(r);
 
-                Map.Overlays.Add(routes);               
+                Map.Overlays.Add(routes);
 
 
             }

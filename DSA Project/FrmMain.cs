@@ -34,9 +34,11 @@ namespace DSA_Project
             GM.Show();
         }
 
-        private void graphVisualizationToolStripMenuItem_Click(object sender, EventArgs e)
+        
+
+        private void treeVisualizationToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FrmGraph GP = new FrmGraph();
+            FrmTree GP = new FrmTree();
             GP.MdiParent = this;
             GP.WindowState = FormWindowState.Maximized;
             GP.Dock = DockStyle.Fill;

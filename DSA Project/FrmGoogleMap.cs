@@ -1,6 +1,7 @@
 ﻿using DSA_Project.Classes;
 using GMap.NET;
 using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,7 +57,7 @@ namespace DSA_Project
                 {
                     var point = GoogleMap.FromLocalToLatLng(e.X, e.Y);
                     _points.Add(new PointLatLng(point.Lat, point.Lng));
-                    map.addMarker(GoogleMap, _points,totalMarkers);
+                    map.addMarker(GoogleMap, _points,totalMarkers, GMarkerGoogleType.red_dot);
                     totalMarkers++;
                     map.loadMap(GoogleMap, zoomLevel);
                     txtOutput.Text = "Point Addedd : latitude " + point.Lat + " longitude " + point.Lng + Environment.NewLine + txtOutput.Text;
@@ -81,10 +82,9 @@ namespace DSA_Project
                 }
                 _graph = graph.CreateGraph(edges);
                 txtOutput.Text = graph.PrintGraph() + Environment.NewLine;
-                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph,0,pic_arrow) + Environment.NewLine + txtOutput.Text;
-                txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0, pic_arrow) + Environment.NewLine + txtOutput.Text;
-                pic_arrow.Visible = true;
-                pic_arrow.BringToFront();
+                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph,0,GoogleMap) + Environment.NewLine + txtOutput.Text;
+                //txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0, pic_arrow) + Environment.NewLine + txtOutput.Text;
+                
             }
             catch (Exception ex)
             {
@@ -142,8 +142,8 @@ namespace DSA_Project
                         //edges.Add(new Edge { Src = int.Parse(src[0].Substring(7)), Dest = int.Parse(dest[0].Substring(7)), src_point = _connectNodes[0].Lat, dest_point = _connectNodes[1].Lng });
                         //edges.Add(new Edge { Src = int.Parse(dest[0].Substring(7)), Dest = int.Parse(src[0].Substring(7)), src_point = _connectNodes[1].Lat, dest_point = _connectNodes[0].Lng });
 
-                        edges.Add(new Edge { Src = int.Parse(src[0].Substring(7)), Dest = int.Parse(dest[0].Substring(7)), src_point = marker.LocalPosition.X, dest_point = marker.LocalPosition.Y });
-                        edges.Add(new Edge { Src = int.Parse(dest[0].Substring(7)), Dest = int.Parse(src[0].Substring(7)), src_point = marker.LocalPosition.X, dest_point = marker.LocalPosition.Y });
+                        edges.Add(new Edge { Src = int.Parse(src[0].Substring(7)), Dest = int.Parse(dest[0].Substring(7)), src_point = marker.Position.Lat, dest_point = marker.Position.Lng });
+                        edges.Add(new Edge { Src = int.Parse(dest[0].Substring(7)), Dest = int.Parse(src[0].Substring(7)), src_point = marker.Position.Lat, dest_point = marker.Position.Lng });
 
                         map.GetRoute(GoogleMap, _connectNodes, zoomLevel);
                         map.loadMap(GoogleMap, zoomLevel);
