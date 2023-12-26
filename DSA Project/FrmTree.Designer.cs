@@ -36,15 +36,21 @@ namespace DSA_Project
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.resultBox = new System.Windows.Forms.TextBox();
-            this.labResult = new System.Windows.Forms.Label();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.Tree = new System.Windows.Forms.TabPage();
+            this.OutputBox = new System.Windows.Forms.TabPage();
+            this.TraverName = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.picTreeDesign)).BeginInit();
+            this.tabControl1.SuspendLayout();
+            this.Tree.SuspendLayout();
+            this.OutputBox.SuspendLayout();
             this.SuspendLayout();
             // 
             // picTreeDesign
             // 
-            this.picTreeDesign.Location = new System.Drawing.Point(3, 95);
+            this.picTreeDesign.Location = new System.Drawing.Point(3, 6);
             this.picTreeDesign.Name = "picTreeDesign";
-            this.picTreeDesign.Size = new System.Drawing.Size(800, 400);
+            this.picTreeDesign.Size = new System.Drawing.Size(800, 420);
             this.picTreeDesign.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picTreeDesign.TabIndex = 0;
             this.picTreeDesign.TabStop = false;
@@ -92,36 +98,73 @@ namespace DSA_Project
             // 
             // resultBox
             // 
-            this.resultBox.Location = new System.Drawing.Point(265, 14);
+            this.resultBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.resultBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultBox.Location = new System.Drawing.Point(3, 3);
             this.resultBox.Name = "resultBox";
-            this.resultBox.Size = new System.Drawing.Size(310, 20);
+            this.resultBox.Size = new System.Drawing.Size(333, 22);
             this.resultBox.TabIndex = 6;
             // 
-            // labResult
+            // tabControl1
             // 
-            this.labResult.AutoSize = true;
-            this.labResult.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labResult.Location = new System.Drawing.Point(604, 17);
-            this.labResult.Name = "labResult";
-            this.labResult.Size = new System.Drawing.Size(43, 15);
-            this.labResult.TabIndex = 7;
-            this.labResult.Text = "Result";
+            this.tabControl1.Controls.Add(this.Tree);
+            this.tabControl1.Controls.Add(this.OutputBox);
+            this.tabControl1.Location = new System.Drawing.Point(-3, 93);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(2000, 2000);
+            this.tabControl1.TabIndex = 8;
+            // 
+            // Tree
+            // 
+            this.Tree.Controls.Add(this.picTreeDesign);
+            this.Tree.Location = new System.Drawing.Point(4, 22);
+            this.Tree.Name = "Tree";
+            this.Tree.Padding = new System.Windows.Forms.Padding(3);
+            this.Tree.Size = new System.Drawing.Size(1992, 1974);
+            this.Tree.TabIndex = 0;
+            this.Tree.Text = "Tree";
+            this.Tree.UseVisualStyleBackColor = true;
+            // 
+            // OutputBox
+            // 
+            this.OutputBox.Controls.Add(this.resultBox);
+            this.OutputBox.Location = new System.Drawing.Point(4, 22);
+            this.OutputBox.Name = "OutputBox";
+            this.OutputBox.Padding = new System.Windows.Forms.Padding(3);
+            this.OutputBox.Size = new System.Drawing.Size(1992, 1974);
+            this.OutputBox.TabIndex = 1;
+            this.OutputBox.Text = "Output";
+            this.OutputBox.UseVisualStyleBackColor = true;
+            // 
+            // TraverName
+            // 
+            this.TraverName.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.TraverName.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.TraverName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TraverName.Location = new System.Drawing.Point(123, 89);
+            this.TraverName.Name = "TraverName";
+            this.TraverName.Size = new System.Drawing.Size(165, 19);
+            this.TraverName.TabIndex = 9;
             // 
             // FrmTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.labResult);
-            this.Controls.Add(this.resultBox);
+            this.Controls.Add(this.TraverName);
+            this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.hScrollBar1);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.selectTraversing);
-            this.Controls.Add(this.picTreeDesign);
             this.Name = "FrmTree";
             this.Text = "FrmTree";
             ((System.ComponentModel.ISupportInitialize)(this.picTreeDesign)).EndInit();
+            this.tabControl1.ResumeLayout(false);
+            this.Tree.ResumeLayout(false);
+            this.OutputBox.ResumeLayout(false);
+            this.OutputBox.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -136,6 +179,9 @@ namespace DSA_Project
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.TextBox resultBox;
-        private System.Windows.Forms.Label labResult;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage Tree;
+        private System.Windows.Forms.TabPage OutputBox;
+        private System.Windows.Forms.TextBox TraverName;
     }
 }

@@ -23,7 +23,7 @@ namespace DSA_Project
 
             // For Node1 childs
             TreeNode node3 = new TreeNode { X = 280, Y = 220, Data = 23 };
-            TreeNode node4 = new TreeNode { X = 372, Y = 220, Data = 56 };
+            TreeNode node4 = new TreeNode { X = 368, Y = 220, Data = 56 };
 
             // For node2 childs
             TreeNode node5 = new TreeNode { X = 430, Y = 220, Data = 78 };
@@ -32,6 +32,14 @@ namespace DSA_Project
             //For node3 childs
             TreeNode node7 = new TreeNode { X = 240, Y = 310, Data = 40 };
 
+            // for node6 childs
+            TreeNode node8 = new TreeNode { X = 470, Y = 310, Data = 10 };
+            TreeNode node9 = new TreeNode { X = 560, Y = 310, Data = 2 };
+
+            // for node8 childs
+            TreeNode node10 = new TreeNode { X = 425, Y = 390, Data = 19 };
+
+
             root.Children.Add(node1);
             root.Children.Add(node2);
             node1.Children.Add(node3);
@@ -39,6 +47,9 @@ namespace DSA_Project
             node2.Children.Add(node5);
             node2.Children.Add(node6);
             node3.Children.Add(node7);
+            node6.Children.Add(node8);
+            node6.Children.Add(node9);
+            node8.Children.Add(node10);
 
             // Connect nodes to the tree 
             BinaryTree tree = new BinaryTree();
@@ -50,6 +61,9 @@ namespace DSA_Project
             tree.root.right.left = new Node(node5.Data);
             tree.root.right.right = new Node(node6.Data);
             tree.root.left.left.left = new Node(node7.Data);
+            tree.root.right.right.left = new Node(node8.Data);
+            tree.root.right.right.right = new Node(node9.Data);
+            tree.root.right.right.left.right = new Node(node8.Data);
 
 
             preorderResult = tree.PreorderTraversal();
@@ -75,9 +89,11 @@ namespace DSA_Project
         //Btn Find click
         private void btnFind_Click(object sender, EventArgs e)
         {
-            resultBox.Clear();
+            
             if (selectTraversing.Text == "Pre-Order Traversing")
             {
+                TraverName.Text = ("Pre-Order Traversing");
+
                 List<string> result = new List<string>(); // Store result in list of string
                 foreach (int value in preorderResult)
                 {
@@ -86,12 +102,14 @@ namespace DSA_Project
                 }
 
                 resultBox.Text = string.Join("", result);
+                
             }
 
 
             else if (selectTraversing.Text == "In-Order Traversing")
             {
-                resultBox.Clear();
+                TraverName.Text = ("In-Order Traversing");
+
                 List<string> result = new List<string>(); // Store result in list of string
                 foreach (int value in InorderResult)
                 {
@@ -105,11 +123,11 @@ namespace DSA_Project
 
             else if (selectTraversing.Text == "Post-Order Traversing")
             {
-                resultBox.Clear();
+                TraverName.Text = ("Post-Order Traversing");
+
                 List<string> result = new List<string>(); // Store result in list of string
                 foreach (int value in PostorderResult)
                 {
-
                     result.Add(" " + value);
                 }
 
