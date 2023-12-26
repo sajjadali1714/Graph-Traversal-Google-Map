@@ -40,6 +40,8 @@ namespace DSA_Project
             this.Tree = new System.Windows.Forms.TabPage();
             this.OutputBox = new System.Windows.Forms.TabPage();
             this.TraverName = new System.Windows.Forms.TextBox();
+            this.txtSearchNode = new System.Windows.Forms.TextBox();
+            this.SearchBtn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.picTreeDesign)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.Tree.SuspendLayout();
@@ -82,10 +84,10 @@ namespace DSA_Project
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(148, 14);
+            this.label1.Font = new System.Drawing.Font("Times New Roman", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(353, 34);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(95, 15);
+            this.label1.Size = new System.Drawing.Size(200, 31);
             this.label1.TabIndex = 3;
             this.label1.Text = "Tree Traversing";
             // 
@@ -147,11 +149,30 @@ namespace DSA_Project
             this.TraverName.Size = new System.Drawing.Size(165, 19);
             this.TraverName.TabIndex = 9;
             // 
+            // txtSearchNode
+            // 
+            this.txtSearchNode.Location = new System.Drawing.Point(200, 12);
+            this.txtSearchNode.Name = "txtSearchNode";
+            this.txtSearchNode.Size = new System.Drawing.Size(100, 20);
+            this.txtSearchNode.TabIndex = 10;
+            // 
+            // SearchBtn
+            // 
+            this.SearchBtn.Location = new System.Drawing.Point(213, 39);
+            this.SearchBtn.Name = "SearchBtn";
+            this.SearchBtn.Size = new System.Drawing.Size(75, 23);
+            this.SearchBtn.TabIndex = 11;
+            this.SearchBtn.Text = "Search";
+            this.SearchBtn.UseVisualStyleBackColor = true;
+            this.SearchBtn.Click += new System.EventHandler(this.button1_Click);
+            // 
             // FrmTree
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.SearchBtn);
+            this.Controls.Add(this.txtSearchNode);
             this.Controls.Add(this.TraverName);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.hScrollBar1);
@@ -183,5 +204,7 @@ namespace DSA_Project
         private System.Windows.Forms.TabPage Tree;
         private System.Windows.Forms.TabPage OutputBox;
         private System.Windows.Forms.TextBox TraverName;
+        private System.Windows.Forms.TextBox txtSearchNode;
+        private System.Windows.Forms.Button SearchBtn;
     }
 }

@@ -33,7 +33,7 @@ namespace DSA_Project
             TreeNode node7 = new TreeNode { X = 240, Y = 310, Data = 40 };
 
             // for node6 childs
-            TreeNode node8 = new TreeNode { X = 470, Y = 310, Data = 10 };
+            TreeNode node8 = new TreeNode { X = 470, Y = 310, Data = 99 };
             TreeNode node9 = new TreeNode { X = 560, Y = 310, Data = 2 };
 
             // for node8 childs
@@ -135,6 +135,31 @@ namespace DSA_Project
             }
 
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            string txt_num = txtSearchNode.Text;
+            int search_num = Int32.Parse(txt_num);
+
+            bool Track = false;
+            foreach(int value in PostorderResult)
+            {
+                if(search_num == value)
+                {
+                    Track = true;
+                }
+            }
+
+            if (Track)
+            {
+                resultBox.Text = search_num + " is found in Tree";
+            }
+            else
+            {
+                resultBox.Text = search_num + " is not found in Tree";
+            }
+        }
+
     }
 }
 
