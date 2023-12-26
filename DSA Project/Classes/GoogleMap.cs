@@ -45,18 +45,19 @@ namespace DSA_Project.Classes
                 // Create Overlay
                 GMapOverlay markers = new GMapOverlay("markers");
 
+               
+                Random rnd = new Random();
+                int value = rnd.Next(0, 100);
                 //ToolTip
-                if (Node >= 0)
-                {
-                    marker.ToolTipText = $"Node : {Node},\nLatitude      : {marker.Position.Lat} \nLongitude : {marker.Position.Lng} ";
+                marker.ToolTipText = $"Node : {Node},\nValue : {value},\nLatitude      : {marker.Position.Lat} \nLongitude : {marker.Position.Lng} ";
 
-                    var toolTip = new GMapToolTip(marker);
-                    toolTip.Fill = new SolidBrush(Color.Aqua);
-                    toolTip.Foreground = new SolidBrush(Color.Black);
-                    toolTip.Offset = new Point(50, -50);
-                    toolTip.Stroke = new Pen(new SolidBrush(Color.Aqua));
-                    marker.ToolTip = toolTip;
-                }
+                var toolTip = new GMapToolTip(marker);
+                toolTip.Fill = new SolidBrush(Color.Aqua);
+                toolTip.Foreground = new SolidBrush(Color.Black);
+                toolTip.Offset = new Point(50, -50);
+                toolTip.Stroke = new Pen(new SolidBrush(Color.Aqua));
+                marker.ToolTip = toolTip;
+
 
                 // Add all markers to that overlay
                 markers.Markers.Add(marker);

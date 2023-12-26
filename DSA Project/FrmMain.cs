@@ -17,8 +17,6 @@ namespace DSA_Project
 
     public partial class FrmMain : Form
     {
-        private int childFormNumber = 0;
-
         public FrmMain()
         {
             InitializeComponent();

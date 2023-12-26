@@ -30,15 +30,15 @@ namespace DSA_Project
         private void InitializeComponent()
         {
             this.picTreeDesign = new System.Windows.Forms.PictureBox();
-            this.selectTraversing = new System.Windows.Forms.ComboBox();
-            this.btnFind = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             this.hScrollBar1 = new System.Windows.Forms.HScrollBar();
             this.resultBox = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.Tree = new System.Windows.Forms.TabPage();
             this.OutputBox = new System.Windows.Forms.TabPage();
+            this.selectTraversing = new System.Windows.Forms.ComboBox();
+            this.btnFind = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.TraverName = new System.Windows.Forms.TextBox();
             this.txtSearchNode = new System.Windows.Forms.TextBox();
             this.SearchBtn = new System.Windows.Forms.Button();
@@ -57,6 +57,55 @@ namespace DSA_Project
             this.picTreeDesign.TabIndex = 0;
             this.picTreeDesign.TabStop = false;
             this.picTreeDesign.Paint += new System.Windows.Forms.PaintEventHandler(this.picTreeDesign_Paint);
+            // 
+            // hScrollBar1
+            // 
+            this.hScrollBar1.Location = new System.Drawing.Point(1000, 1000);
+            this.hScrollBar1.Name = "hScrollBar1";
+            this.hScrollBar1.Size = new System.Drawing.Size(773, 17);
+            this.hScrollBar1.TabIndex = 5;
+            // 
+            // resultBox
+            // 
+            this.resultBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.resultBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.resultBox.Location = new System.Drawing.Point(3, 3);
+            this.resultBox.Name = "resultBox";
+            this.resultBox.Size = new System.Drawing.Size(333, 22);
+            this.resultBox.TabIndex = 6;
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Alignment = System.Windows.Forms.TabAlignment.Bottom;
+            this.tabControl1.Controls.Add(this.Tree);
+            this.tabControl1.Controls.Add(this.OutputBox);
+            this.tabControl1.Location = new System.Drawing.Point(-3, 93);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(2000, 2000);
+            this.tabControl1.TabIndex = 8;
+            // 
+            // Tree
+            // 
+            this.Tree.Controls.Add(this.picTreeDesign);
+            this.Tree.Location = new System.Drawing.Point(4, 4);
+            this.Tree.Name = "Tree";
+            this.Tree.Padding = new System.Windows.Forms.Padding(3);
+            this.Tree.Size = new System.Drawing.Size(1992, 1974);
+            this.Tree.TabIndex = 0;
+            this.Tree.Text = "Tree";
+            this.Tree.UseVisualStyleBackColor = true;
+            // 
+            // OutputBox
+            // 
+            this.OutputBox.Controls.Add(this.resultBox);
+            this.OutputBox.Location = new System.Drawing.Point(4, 4);
+            this.OutputBox.Name = "OutputBox";
+            this.OutputBox.Padding = new System.Windows.Forms.Padding(3);
+            this.OutputBox.Size = new System.Drawing.Size(1992, 1974);
+            this.OutputBox.TabIndex = 1;
+            this.OutputBox.Text = "Output";
+            this.OutputBox.UseVisualStyleBackColor = true;
             // 
             // selectTraversing
             // 
@@ -91,60 +140,12 @@ namespace DSA_Project
             this.label1.TabIndex = 3;
             this.label1.Text = "Tree Traversing";
             // 
-            // hScrollBar1
-            // 
-            this.hScrollBar1.Location = new System.Drawing.Point(1000, 1000);
-            this.hScrollBar1.Name = "hScrollBar1";
-            this.hScrollBar1.Size = new System.Drawing.Size(773, 17);
-            this.hScrollBar1.TabIndex = 5;
-            // 
-            // resultBox
-            // 
-            this.resultBox.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.resultBox.Font = new System.Drawing.Font("Times New Roman", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.resultBox.Location = new System.Drawing.Point(3, 3);
-            this.resultBox.Name = "resultBox";
-            this.resultBox.Size = new System.Drawing.Size(333, 22);
-            this.resultBox.TabIndex = 6;
-            // 
-            // tabControl1
-            // 
-            this.tabControl1.Controls.Add(this.Tree);
-            this.tabControl1.Controls.Add(this.OutputBox);
-            this.tabControl1.Location = new System.Drawing.Point(-3, 93);
-            this.tabControl1.Name = "tabControl1";
-            this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(2000, 2000);
-            this.tabControl1.TabIndex = 8;
-            // 
-            // Tree
-            // 
-            this.Tree.Controls.Add(this.picTreeDesign);
-            this.Tree.Location = new System.Drawing.Point(4, 22);
-            this.Tree.Name = "Tree";
-            this.Tree.Padding = new System.Windows.Forms.Padding(3);
-            this.Tree.Size = new System.Drawing.Size(1992, 1974);
-            this.Tree.TabIndex = 0;
-            this.Tree.Text = "Tree";
-            this.Tree.UseVisualStyleBackColor = true;
-            // 
-            // OutputBox
-            // 
-            this.OutputBox.Controls.Add(this.resultBox);
-            this.OutputBox.Location = new System.Drawing.Point(4, 22);
-            this.OutputBox.Name = "OutputBox";
-            this.OutputBox.Padding = new System.Windows.Forms.Padding(3);
-            this.OutputBox.Size = new System.Drawing.Size(1992, 1974);
-            this.OutputBox.TabIndex = 1;
-            this.OutputBox.Text = "Output";
-            this.OutputBox.UseVisualStyleBackColor = true;
-            // 
             // TraverName
             // 
             this.TraverName.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.TraverName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.TraverName.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TraverName.Location = new System.Drawing.Point(123, 89);
+            this.TraverName.Location = new System.Drawing.Point(123, 72);
             this.TraverName.Name = "TraverName";
             this.TraverName.Size = new System.Drawing.Size(165, 19);
             this.TraverName.TabIndex = 9;
@@ -179,8 +180,13 @@ namespace DSA_Project
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnFind);
             this.Controls.Add(this.selectTraversing);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmTree";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FrmTree";
+            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             ((System.ComponentModel.ISupportInitialize)(this.picTreeDesign)).EndInit();
             this.tabControl1.ResumeLayout(false);
             this.Tree.ResumeLayout(false);
@@ -194,15 +200,15 @@ namespace DSA_Project
         #endregion
 
         private System.Windows.Forms.PictureBox picTreeDesign;
-        private System.Windows.Forms.ComboBox selectTraversing;
-        private System.Windows.Forms.Button btnFind;
-        private System.Windows.Forms.Label label1;
         private System.ComponentModel.BackgroundWorker backgroundWorker1;
         private System.Windows.Forms.HScrollBar hScrollBar1;
         private System.Windows.Forms.TextBox resultBox;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage Tree;
         private System.Windows.Forms.TabPage OutputBox;
+        private System.Windows.Forms.ComboBox selectTraversing;
+        private System.Windows.Forms.Button btnFind;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.TextBox TraverName;
         private System.Windows.Forms.TextBox txtSearchNode;
         private System.Windows.Forms.Button SearchBtn;

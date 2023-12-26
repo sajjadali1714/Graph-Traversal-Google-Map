@@ -1,12 +1,9 @@
-﻿using GMap.NET.WindowsForms;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+using GMap.NET;
+using GMap.NET.WindowsForms;
+using GMap.NET.WindowsForms.Markers;
 
 namespace DSA_Project.Classes
 {
@@ -16,25 +13,25 @@ namespace DSA_Project.Classes
         private bool[] visited;
         string v_return = string.Empty;
 
-        public string DepthFirstSearch(Graph graph, int startVertex, GMapControl GoogleMap)
+        public string DepthFirstSearch(Graph graph, int startVertex,int? targetValue = null)
         {
             v_return = string.Empty;
             int vertices = graph.Head.Length;
             visited = new bool[vertices];
-            v_return = DFS(graph, startVertex, GoogleMap);
+            v_return = DFS(graph, startVertex, targetValue);
             return v_return;
         }
 
-        public string BreadthFirstSearch(Graph graph, int startVertex, GMapControl GoogleMap)
+        public string BreadthFirstSearch(Graph graph, int startVertex, int? targetValue = null)
         {
             v_return = string.Empty;
             int vertices = graph.Head.Length;
             visited = new bool[vertices];
-            v_return = BFS(graph, startVertex, GoogleMap);
+            v_return = BFS(graph, startVertex,targetValue);
             return v_return;
         }
 
-        private string DFS(Graph graph, int vertex,GMapControl GoogleMap)
+        private string DFS(Graph graph, int vertex, int? targetValue = null)
         {
             visited[vertex] = true;
             v_return = v_return +  $" {vertex} ";
@@ -45,9 +42,7 @@ namespace DSA_Project.Classes
                 int adjVertex = node.Dest;
                 if (!visited[adjVertex])
                 {
-                    map.addMarker(GoogleMap, null, -1, GMap.NET.WindowsForms.Markers.GMarkerGoogleType.blue_pushpin);
-                    DFS(graph, adjVertex, GoogleMap);
-                    
+                    DFS(graph, adjVertex, targetValue);                   
 
                 }
                 node = node.Next;
@@ -56,7 +51,7 @@ namespace DSA_Project.Classes
             return v_return;
         }
 
-        private string BFS(Graph graph, int startVertex, GMapControl GoogleMap)
+        private string BFS(Graph graph, int startVertex, int? targetValue = null)
         {
             Queue<int> queue = new Queue<int>();
             visited[startVertex] = true;
