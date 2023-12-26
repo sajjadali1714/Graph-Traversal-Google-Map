@@ -4,6 +4,7 @@ using System.Threading;
 using GMap.NET;
 using GMap.NET.WindowsForms;
 using GMap.NET.WindowsForms.Markers;
+using Infragistics.Win;
 
 namespace DSA_Project.Classes
 {
@@ -13,25 +14,25 @@ namespace DSA_Project.Classes
         private bool[] visited;
         string v_return = string.Empty;
 
-        public string DepthFirstSearch(Graph graph, int startVertex,int? targetValue = null)
+        public string DepthFirstSearch(Graph graph, int startVertex)
         {
             v_return = string.Empty;
             int vertices = graph.Head.Length;
             visited = new bool[vertices];
-            v_return = DFS(graph, startVertex, targetValue);
+            v_return = DFS(graph, startVertex);
             return v_return;
         }
 
-        public string BreadthFirstSearch(Graph graph, int startVertex, int? targetValue = null)
+        public string BreadthFirstSearch(Graph graph, int startVertex)
         {
             v_return = string.Empty;
             int vertices = graph.Head.Length;
             visited = new bool[vertices];
-            v_return = BFS(graph, startVertex,targetValue);
+            v_return = BFS(graph, startVertex);
             return v_return;
         }
 
-        private string DFS(Graph graph, int vertex, int? targetValue = null)
+        private string DFS(Graph graph, int vertex)
         {
             visited[vertex] = true;
             v_return = v_return +  $" {vertex} ";
@@ -42,7 +43,8 @@ namespace DSA_Project.Classes
                 int adjVertex = node.Dest;
                 if (!visited[adjVertex])
                 {
-                    DFS(graph, adjVertex, targetValue);                   
+                   
+                    DFS(graph, adjVertex);                   
 
                 }
                 node = node.Next;
@@ -51,7 +53,7 @@ namespace DSA_Project.Classes
             return v_return;
         }
 
-        private string BFS(Graph graph, int startVertex, int? targetValue = null)
+        private string BFS(Graph graph, int startVertex)
         {
             Queue<int> queue = new Queue<int>();
             visited[startVertex] = true;

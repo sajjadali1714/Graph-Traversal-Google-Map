@@ -6,6 +6,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Data;
+using IronXL;
 
 namespace DSA_Project
 {
@@ -82,7 +84,7 @@ namespace DSA_Project
                 }
                 _graph = graph.CreateGraph(edges);
                 txtOutput.Text = graph.PrintGraph() + Environment.NewLine;
-                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph, 0, null) + Environment.NewLine + txtOutput.Text;
+                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph, 0) + Environment.NewLine + txtOutput.Text;
                 //txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0, pic_arrow) + Environment.NewLine + txtOutput.Text;
 
             }
@@ -93,7 +95,31 @@ namespace DSA_Project
 
         }
 
+        private void btnUploadExcel_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                string filePath = Environment.CurrentDirectory;
+                var MainDir = filePath.Split(new string[] { "bin" }, StringSplitOptions.None)[0];
+                WorkBook workBook = WorkBook.LoadCSV(MainDir + "Resources/Latandlong.csv", fileFormat : ExcelFileFormat.XLSX, listDelimiter : ",");
+                WorkSheet ws = workBook.DefaultWorkSheet;
+                DataTable dt = ws.ToDataTable(true);
 
+                foreach(DataRow row in dt.Rows)
+                {
+                    double latitude = Convert.ToDouble(row[2]);  
+                    double longitude = Convert.ToDouble(row[3]);
+
+                    _points.Add(new PointLatLng(latitude, longitude));
+                    map.addMarker(GoogleMap, _points, totalMarkers, GMarkerGoogleType.red_dot);
+                    totalMarkers++;
+                    map.loadMap(GoogleMap, zoomLevel);
+                }
+            }catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         private void GoogleMap_MouseDown(object sender, MouseEventArgs e)
         {
