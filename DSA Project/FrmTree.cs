@@ -1,12 +1,19 @@
-﻿using System;
+﻿using GMap.NET.MapProviders;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using System.Windows.Forms;
+
 namespace DSA_Project
 {
     public partial class FrmTree : Form
     {
-
-
+       
         private List<TreeNode> nodes = new List<TreeNode>();
         TreeNode root = new TreeNode();
         List<int> preorderResult;      // Store all after traversing pre-Order
@@ -89,10 +96,10 @@ namespace DSA_Project
         //Btn Find click
         private void btnFind_Click(object sender, EventArgs e)
         {
-            
+            this.Cursor = Cursors.WaitCursor;
             if (selectTraversing.Text == "Pre-Order Traversing")
             {
-                TraverName.Text = ("Pre-Order Traversing");
+                resultBox.Text  = ("Pre-Order Traversing==============================\n");
 
                 List<string> result = new List<string>(); // Store result in list of string
                 foreach (int value in preorderResult)
@@ -101,14 +108,14 @@ namespace DSA_Project
                     result.Add(" " + value);
                 }
 
-                resultBox.Text = string.Join("", result);
-                
-            }
+                resultBox.Text = resultBox.Text + Environment.NewLine + string.Join("", result);
 
+            }
+            
 
             else if (selectTraversing.Text == "In-Order Traversing")
             {
-                TraverName.Text = ("In-Order Traversing");
+                resultBox.Text = ("In-Order Traversing==============================\n");
 
                 List<string> result = new List<string>(); // Store result in list of string
                 foreach (int value in InorderResult)
@@ -117,13 +124,13 @@ namespace DSA_Project
                     result.Add(" " + value);
                 }
 
-                resultBox.Text = string.Join("", result);
+                resultBox.Text =  resultBox.Text + Environment.NewLine + string.Join("", result) ;
             }
 
 
             else if (selectTraversing.Text == "Post-Order Traversing")
             {
-                TraverName.Text = ("Post-Order Traversing");
+                resultBox.Text = ("Post-Order Traversing==============================\n");
 
                 List<string> result = new List<string>(); // Store result in list of string
                 foreach (int value in PostorderResult)
@@ -131,8 +138,10 @@ namespace DSA_Project
                     result.Add(" " + value);
                 }
 
-                resultBox.Text = string.Join("", result);
+                resultBox.Text = resultBox.Text + Environment.NewLine + string.Join("", result);
             }
+
+            this.Cursor = Cursors.Default;
 
         }
 
@@ -142,11 +151,13 @@ namespace DSA_Project
             int search_num = Int32.Parse(txt_num);
 
             bool Track = false;
-            foreach(int value in PostorderResult)
+            foreach (int value in PostorderResult)
             {
-                if(search_num == value)
+                if (search_num == value)
                 {
                     Track = true;
+                    break;
+
                 }
             }
 

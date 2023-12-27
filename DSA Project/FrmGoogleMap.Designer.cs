@@ -51,6 +51,9 @@
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.txtOutput = new System.Windows.Forms.TextBox();
             this.sqLiteCommand1 = new System.Data.SQLite.SQLiteCommand();
+            this.btnDFS = new System.Windows.Forms.Button();
+            this.btnBFS = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             this.ToolStrip1.SuspendLayout();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
@@ -208,7 +211,7 @@
             this.GoogleMap.GrayScaleMode = false;
             this.GoogleMap.HelperLineOption = GMap.NET.WindowsForms.HelperLineOptions.DontShow;
             this.GoogleMap.LevelsKeepInMemory = 5;
-            this.GoogleMap.Location = new System.Drawing.Point(3, 64);
+            this.GoogleMap.Location = new System.Drawing.Point(3, 94);
             this.GoogleMap.MarkersEnabled = true;
             this.GoogleMap.MaxZoom = 2;
             this.GoogleMap.MinZoom = 2;
@@ -222,7 +225,7 @@
             this.GoogleMap.ScaleMode = GMap.NET.WindowsForms.ScaleModes.Integer;
             this.GoogleMap.SelectedAreaFillColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(65)))), ((int)(((byte)(105)))), ((int)(((byte)(225)))));
             this.GoogleMap.ShowTileGridLines = false;
-            this.GoogleMap.Size = new System.Drawing.Size(833, 231);
+            this.GoogleMap.Size = new System.Drawing.Size(833, 201);
             this.GoogleMap.TabIndex = 1;
             this.GoogleMap.Zoom = 0D;
             this.GoogleMap.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.GoogleMap_MouseDoubleClick);
@@ -230,19 +233,22 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Controls.Add(this.btnUploadExcel);
+            this.panel1.Controls.Add(this.btnBFS);
+            this.panel1.Controls.Add(this.btnDFS);
             this.panel1.Controls.Add(this.btnAdjacencyList);
             this.panel1.Controls.Add(this.btnGetPolygon);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(3, 3);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(833, 61);
+            this.panel1.Size = new System.Drawing.Size(833, 91);
             this.panel1.TabIndex = 0;
             // 
             // btnUploadExcel
             // 
             this.btnUploadExcel.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnUploadExcel.Location = new System.Drawing.Point(255, 17);
+            this.btnUploadExcel.Location = new System.Drawing.Point(531, 57);
             this.btnUploadExcel.Name = "btnUploadExcel";
             this.btnUploadExcel.Size = new System.Drawing.Size(132, 28);
             this.btnUploadExcel.TabIndex = 1;
@@ -253,7 +259,7 @@
             // btnAdjacencyList
             // 
             this.btnAdjacencyList.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAdjacencyList.Location = new System.Drawing.Point(117, 17);
+            this.btnAdjacencyList.Location = new System.Drawing.Point(117, 57);
             this.btnAdjacencyList.Name = "btnAdjacencyList";
             this.btnAdjacencyList.Size = new System.Drawing.Size(132, 28);
             this.btnAdjacencyList.TabIndex = 1;
@@ -264,7 +270,7 @@
             // btnGetPolygon
             // 
             this.btnGetPolygon.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGetPolygon.Location = new System.Drawing.Point(5, 17);
+            this.btnGetPolygon.Location = new System.Drawing.Point(5, 57);
             this.btnGetPolygon.Name = "btnGetPolygon";
             this.btnGetPolygon.Size = new System.Drawing.Size(106, 28);
             this.btnGetPolygon.TabIndex = 1;
@@ -297,6 +303,39 @@
             // 
             this.sqLiteCommand1.CommandText = null;
             // 
+            // btnDFS
+            // 
+            this.btnDFS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDFS.Location = new System.Drawing.Point(255, 57);
+            this.btnDFS.Name = "btnDFS";
+            this.btnDFS.Size = new System.Drawing.Size(132, 28);
+            this.btnDFS.TabIndex = 1;
+            this.btnDFS.Text = "DFS Traversal";
+            this.btnDFS.UseVisualStyleBackColor = true;
+            this.btnDFS.Click += new System.EventHandler(this.btnDFS_Click);
+            // 
+            // btnBFS
+            // 
+            this.btnBFS.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnBFS.Location = new System.Drawing.Point(393, 57);
+            this.btnBFS.Name = "btnBFS";
+            this.btnBFS.Size = new System.Drawing.Size(132, 28);
+            this.btnBFS.TabIndex = 1;
+            this.btnBFS.Text = "BFS Traversal";
+            this.btnBFS.UseVisualStyleBackColor = true;
+            this.btnBFS.Click += new System.EventHandler(this.btnBFS_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 24F);
+            this.label1.ForeColor = System.Drawing.Color.Blue;
+            this.label1.Location = new System.Drawing.Point(7, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(267, 37);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Graph Traversing";
+            // 
             // FrmGoogleMap
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -317,6 +356,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
             this.ResumeLayout(false);
@@ -348,5 +388,8 @@
         private System.Windows.Forms.TextBox txtOutput;
         private System.Windows.Forms.Button btnUploadExcel;
         private System.Windows.Forms.Button btnAdjacencyList;
+        private System.Windows.Forms.Button btnBFS;
+        private System.Windows.Forms.Button btnDFS;
+        private System.Windows.Forms.Label label1;
     }
 }

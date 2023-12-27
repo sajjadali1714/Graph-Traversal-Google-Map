@@ -23,16 +23,7 @@ namespace DSA_Project.Classes
             return v_return;
         }
 
-        public string BreadthFirstSearch(Graph graph, int startVertex)
-        {
-            v_return = string.Empty;
-            int vertices = graph.Head.Length;
-            visited = new bool[vertices];
-            v_return = BFS(graph, startVertex);
-            return v_return;
-        }
-
-        private string DFS(Graph graph, int vertex)
+               private string DFS(Graph graph, int vertex)
         {
             visited[vertex] = true;
             v_return = v_return +  $" {vertex} ";
@@ -53,6 +44,14 @@ namespace DSA_Project.Classes
             return v_return;
         }
 
+        public string BreadthFirstSearch(Graph graph, int startVertex)
+        {
+            v_return = string.Empty;
+            int vertices = graph.Head.Length;
+            visited = new bool[vertices];
+            v_return = BFS(graph, startVertex);
+            return v_return;
+        }
         private string BFS(Graph graph, int startVertex)
         {
             Queue<int> queue = new Queue<int>();

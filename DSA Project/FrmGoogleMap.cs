@@ -38,11 +38,13 @@ namespace DSA_Project
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 if (_points.Count >= 3)
                 {
                     map.GetPolygon(GoogleMap, _points, "My Area");
                     map.loadMap(GoogleMap, zoomLevel);
                 }
+                this.Cursor = Cursors.Default;
 
             }
             catch (Exception ex)
@@ -77,16 +79,16 @@ namespace DSA_Project
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 GraphHandler graph = new GraphHandler(totalMarkers);
                 foreach (Edge edge in edges)
                 {
                     graph.AddEdge(edge);
                 }
                 _graph = graph.CreateGraph(edges);
-                txtOutput.Text = graph.PrintGraph() + Environment.NewLine;
-                txtOutput.Text = "Depth First Search    : " + traversal.DepthFirstSearch(_graph, 0) + Environment.NewLine + txtOutput.Text;
-                //txtOutput.Text = "Breadth First Search : " + traversal.BreadthFirstSearch(_graph, 0, pic_arrow) + Environment.NewLine + txtOutput.Text;
+                txtOutput.Text = "Adjacency List"+ Environment.NewLine +"======================================" + Environment.NewLine + graph.PrintGraph() + Environment.NewLine;
 
+                this.Cursor = Cursors.Default;
             }
             catch (Exception ex)
             {
@@ -99,6 +101,7 @@ namespace DSA_Project
         {
             try
             {
+                this.Cursor = Cursors.WaitCursor;
                 string filePath = Environment.CurrentDirectory;
                 var MainDir = filePath.Split(new string[] { "bin" }, StringSplitOptions.None)[0];
                 WorkBook workBook = WorkBook.LoadCSV(MainDir + "Resources/Latandlong.csv", fileFormat : ExcelFileFormat.XLSX, listDelimiter : ",");
@@ -115,10 +118,40 @@ namespace DSA_Project
                     totalMarkers++;
                     map.loadMap(GoogleMap, zoomLevel);
                 }
-            }catch (Exception ex)
+                btnGetPolygon.PerformClick();
+                this.Cursor = Cursors.Default;
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        private void btnDFS_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            GraphHandler graph = new GraphHandler(totalMarkers);
+            foreach (Edge edge in edges)
+            {
+                graph.AddEdge(edge);
+            }
+            _graph = graph.CreateGraph(edges);
+            txtOutput.Text = "Depth First Search" + Environment.NewLine + "======================================" + Environment.NewLine + traversal.DepthFirstSearch(_graph, 0) + Environment.NewLine;
+            this.Cursor = Cursors.Default;
+        }
+
+        private void btnBFS_Click(object sender, EventArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            GraphHandler graph = new GraphHandler(totalMarkers);
+            foreach (Edge edge in edges)
+            {
+                graph.AddEdge(edge);
+            }
+            _graph = graph.CreateGraph(edges);
+            txtOutput.Text = graph.PrintGraph() + Environment.NewLine;
+            txtOutput.Text = "Breadth First Search" + Environment.NewLine + "======================================" + Environment.NewLine + traversal.BreadthFirstSearch(_graph, 0) + Environment.NewLine;
+            this.Cursor = Cursors.Default;
         }
 
         private void GoogleMap_MouseDown(object sender, MouseEventArgs e)
